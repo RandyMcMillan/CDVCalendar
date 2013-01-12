@@ -277,9 +277,19 @@
 
 	//    mvcCDVCalendar.webView.alpha = 0.5;
 
+    
+    /*
+    
+     rework in createEventWithDocWrite
+     
 	NSString *jsString = kCDVCalendarALERT;
 	[mvcCDVCalendar.webView stringByEvaluatingJavaScriptFromString:jsString];
 
+     
+     
+    */
+    
+    
 	NSString *resultType = [arguments objectAtIndex:0];
 	NSLog(@"%@", resultType);
 	CDVPluginResult *result;
@@ -295,6 +305,57 @@
 		NSLog(@"callbackId = '%@'", callbackId);
 		[self writeJavascript:[result toErrorCallbackString:callbackId]];
 	}
+    
+// creating the dateformatter object
+NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
+[df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+NSDate	*myStartDate	= [df dateFromString:startDate];
+NSDate	*myEndDate		= [df dateFromString:endDate];
+
+myEvent.title		= title;
+myEvent.location	= location;
+myEvent.notes		= notes;
+myEvent.startDate	= myStartDate;
+myEvent.endDate		= myEndDate;
+myEvent.calendar	= self.eventStore.defaultCalendarForNewEvents;
+
+EKAlarm *reminder = [EKAlarm alarmWithRelativeOffset:-2 * 60 * 60];
+
+[myEvent addAlarm:reminder];
+
+NSError *error = nil;
+[self.eventStore saveEvent:myEvent span:EKSpanThisEvent error:&error];
+
+BOOL saved = [self.eventStore	saveEvent	:myEvent span:EKSpanThisEvent
+                                 error		:&error];
+
+if (saved) {
+    UIAlertView *alert = [[UIAlertView alloc]	initWithTitle		:title
+                                                  message				:@"Saved to Calendar" delegate:self
+                                           cancelButtonTitle	:@"Thank you!"
+                                           otherButtonTitles	:nil];
+    [alert show];
+    [alert release];
+}
+
+
+
+
+/*
+// Check error code + return result
+if (error) {
+    CDVPluginResult *pluginResult = [CDVPluginResult	resultWithStatus:CDVCommandStatus_ERROR
+                                                     messageAsString :error.userInfo.description];
+    [self writeJavascript:[pluginResult toErrorCallbackString:errFunc]];
+} else {
+    NSLog(@"Reached Success");
+    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+    [self writeJavascript:[pluginResult toSuccessCallbackString:succFunc]];
+}
+*/
+
+
+
 }
 
 - (void)deleteEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
