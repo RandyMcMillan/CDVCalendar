@@ -285,7 +285,7 @@
 	NSLog(@"%@", resultType);
 	CDVPluginResult *result;
 
-	if ([resultType isEqualToString:@"success"]) {
+	if ([resultType isEqualToString:@"Title"]) {
 		result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"Success! const kCDVCalendarALERT was evaluated by webview and created alert!"];
 
 		NSLog(@"callbackId = '%@'", callbackId);
