@@ -29,10 +29,8 @@
                  for more details -jm */
                 function onDeviceReady() {
                     
-                    init('success');
                     
                 }
-                
                 
                 function init (returnSuccess){
                     
@@ -40,31 +38,78 @@
                     
                 }
                 
-                function buttonOne (returnSuccess){
+                
+                function callNativeFunction (result){
                     
-                    window.plugins.CDVCalendar.callNativeFunction(nativePluginResultHandler,nativePluginErrorHandler,returnSuccess);
+                    
+                    window.plugins.CDVCalendar.callNativeFunction(success,fail,result);
+                    
                     
                 }
-                function buttonTwo (returnSuccess){
+                
+                function buttonOne (){
                     
-                    window.plugins.CDVCalendar.callNativeFunction(nativePluginResultHandler,nativePluginErrorHandler,returnSuccess);
+                    callNativeFunction();
+                    
+                }
+                
+                
+                function buttonTwo (){
+                    
+                    
+                    console.log("creating event");
+                    var title= "My Sample Appt";
+                    var location = "Los Angeles";
+                    var notes = "This is a sample note";
+                    var startDate = "2013-01-16 09:30:00";
+                    var endDate =   "2013-01-16 12:30:00";
+                    
+                    console.log(title);
+                    console.log(location);
+                    console.log(notes);
+                    console.log(startDate);
+                    console.log(endDate);
+                    
+                    window.plugins.CDVCalendar.createEvent(title,location,notes,startDate,endDate,onSuccess,onError);
+                    
+                    
+                    
+                }
+                
+                
+                function onSuccess () {
+                    
+                    
+                    console.log('onSucess function called!');
+                    
+                    
+                }
+                
+                
+                function onError () {
+                    
+                    
+                    console.log('onError function called!');
+                    
                     
                 }
                 
                 function nativePluginResultHandler (result) {}
                 function nativePluginErrorHandler (error) {}
                 
-                
                 </script>
             </head>
     <body onload="onBodyLoad()">
         <h1>Hey, it's Cordova!</h1>
         
-        <button onclick="buttonOne('success');">Click to invoke the CDVCalendar with an SUCCESS!</button>
-        <button onclick="buttonTwo('error');">Click to invoke the CDVCalendar with an ERROR!</button>
+        <button onclick="buttonOne();">buttonOne!</button>
+        <button onclick="buttonTwo();">buttonTwo!</button>
+        <button onclick="init('success');">buttonThree!</button>
+        
         
     </body>
 </html>
+
 
 
 
