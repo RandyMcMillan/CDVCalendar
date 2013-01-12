@@ -54,7 +54,7 @@
                     
                 }
                 
-                ///nativeFunction
+                //nativeFunction
                 function nativeFunction (returnSuccess){
                     
                     
@@ -63,6 +63,19 @@
                     
                 }
                 
+                function nativePluginResultHandler (result) {
+                    
+                    console.log('nativePluginResultHandler');
+                    console.log(result);
+                    
+                }
+                
+                function nativePluginErrorHandler (error) {
+                    
+                    console.log('nativePluginErrorHandler');
+                    console.log(error);
+                    
+                }
                 
                 
                 //createEvent
@@ -94,7 +107,7 @@
                 //buttons
                 function buttonOne (){
                     
-                    callNativeFunction();
+                    nativeFunction();
                     
                 }
                 
@@ -115,26 +128,26 @@
                     console.log(startDate);
                     console.log(endDate);
                     
-                    window.plugins.CDVCalendar.createEventOld(title,location,notes,startDate,endDate,createEventResultHandler,createEventErrorHandler);
+                    window.plugins.CDVCalendar.createEventOLD(title,location,notes,startDate,endDate,createEventOldResultHandler,createEventOldErrorHandler);
                     
                     
                     
                 }
                 
                 
-                function createEventResultHandler () {
+                function createEventOldResultHandler () {
                     
                     
-                    console.log('createEventResultHandler function called!');
+                    console.log('createEventOldResultHandler function called!');
                     
                     
                 }
                 
                 
-                function createEventErrorHandler () {
+                function createEventOldErrorHandler () {
                     
                     
-                    console.log('createEventErrorHandler function called!');
+                    console.log('createEventOldErrorHandler function called!');
                     
                     
                 }

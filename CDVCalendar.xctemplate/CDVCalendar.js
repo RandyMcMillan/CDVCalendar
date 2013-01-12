@@ -69,7 +69,7 @@
  console.log("calendarPlugin.createEvent failure: successCallback parameter must be a function");
  return
  }
- cordova.exec(successCallback,errorCallback,"CDVCalendar","createEvent", [title,location,notes,startDate,endDate,successCallback,errorCallback]);
+ cordova.exec(successCallback,errorCallback,"CDVCalendar","createEventOLD", [title,location,notes,startDate,endDate,successCallback,errorCallback]);
  };
  
  
