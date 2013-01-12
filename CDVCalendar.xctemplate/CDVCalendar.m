@@ -244,116 +244,116 @@
 
 - (void)createEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
 {
-	NSLog(@"Hello, this is a createEvent function called from CDVCalendar!");
+	// NSLog(@"Hello, this is a createEvent function called from CDVCalendar!");
 
 	EKEvent *myEvent = [EKEvent eventWithEventStore:self.eventStore];
 	// Import arguments
 
 	// get the callback id
 	NSString *callbackId = [arguments pop];
-	NSLog(@"callbackId = '%@'", callbackId);
+	// NSLog(@"callbackId = '%@'", callbackId);
 
 	NSString *title = [arguments objectAtIndex:0];
-	NSLog(@"title = '%@'", title);
+	// NSLog(@"title = '%@'", title);
 
 	NSString *location = [arguments objectAtIndex:1];
-	NSLog(@"location = '%@'", location);
+	// NSLog(@"location = '%@'", location);
 
 	NSString *notes = [arguments objectAtIndex:2];
-	NSLog(@"notes = '%@'", notes);
+	// NSLog(@"notes = '%@'", notes);
 
 	NSString *startDate = [arguments objectAtIndex:3];
-	NSLog(@"startDate = '%@'", startDate);
+	// NSLog(@"startDate = '%@'", startDate);
 
 	NSString *endDate = [arguments objectAtIndex:4];
-	NSLog(@"endDate = '%@'", endDate);
+	// NSLog(@"endDate = '%@'", endDate);
 
-	NSLog(@"kCDVCalendarALERT = %@", kCDVCalendarALERT);
+	// NSLog(@"kCDVCalendarALERT = %@", kCDVCalendarALERT);
 
-	//CDVViewController *mvcCDVCalendar = (CDVViewController *)[super viewController];
+	// CDVViewController *mvcCDVCalendar = (CDVViewController *)[super viewController];
 	// NSLog(@"mvcCDVCalendar = %@", mvcCDVCalendar);
 	// NSLog(@"mvcCDVCalendar.view = %@", mvcCDVCalendar.view);
 	// NSLog(@"mvcCDVCalendar.webView = %@", mvcCDVCalendar.webView);
 	//    mvcCDVCalendar.webView.alpha = 0.5;
-    
-    /*
-    
-     rework in createEventWithDocWrite
-     
-	NSString *jsString = kCDVCalendarALERT;
-	[mvcCDVCalendar.webView stringByEvaluatingJavaScriptFromString:jsString];
 
-     
-     
-    */
+	/*
+	 *
+	 *   rework in createEventWithDocWrite
+	 *
+	 *   NSString *jsString = kCDVCalendarALERT;
+	 *   [mvcCDVCalendar.webView stringByEvaluatingJavaScriptFromString:jsString];
+	 *
+	 *
+	 *
+	 */
+
     
     
-	NSString *resultType = [arguments objectAtIndex:0];
-	NSLog(@"%@", resultType);
-	CDVPluginResult *result;
+	// creating the dateformatter object
+	NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
 
-	if ([resultType isEqualToString:@"Title"]) {
-		result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"Success! const kCDVCalendarALERT was evaluated by webview and created alert!"];
+	[df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+	NSDate	*myStartDate	= [df dateFromString:startDate];
+	NSDate	*myEndDate		= [df dateFromString:endDate];
 
-		NSLog(@"callbackId = '%@'", callbackId);
-		[self writeJavascript:[result toSuccessCallbackString:callbackId]];
-	} else {
-		result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"resultType = 'error'! const kCDVCalendarALERT was evaluated by webview and created alert!"];
+	myEvent.title		= title;
+	myEvent.location	= location;
+	myEvent.notes		= notes;
+	myEvent.startDate	= myStartDate;
+	myEvent.endDate		= myEndDate;
+	myEvent.calendar	= self.eventStore.defaultCalendarForNewEvents;
 
-		NSLog(@"callbackId = '%@'", callbackId);
-		[self writeJavascript:[result toErrorCallbackString:callbackId]];
+	EKAlarm *reminder = [EKAlarm alarmWithRelativeOffset:-2 * 60 * 60];
+
+	[myEvent addAlarm:reminder];
+
+	NSError *error = nil;
+	[self.eventStore saveEvent:myEvent span:EKSpanThisEvent error:&error];
+
+	BOOL saved = [self.eventStore	saveEvent	:myEvent span:EKSpanThisEvent
+									error		:&error];
+
+	if (saved) {
+		UIAlertView *alert = [[UIAlertView alloc]	initWithTitle		:title
+													message				:@"Saved to Calendar" delegate:self
+													cancelButtonTitle	:@"Thank you!"
+													otherButtonTitles	:nil];
+		[alert show];
+		[alert release];
 	}
+
+	// Check error code + return result
+	if (error) {
+		CDVPluginResult *pluginResult = [CDVPluginResult	resultWithStatus:CDVCommandStatus_ERROR
+															messageAsString :error.userInfo.description];
+		[self writeJavascript:[pluginResult toErrorCallbackString:callbackId]];
+	} else {
+		NSLog(@"Reached Success");
+		CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+		[self writeJavascript:[pluginResult toSuccessCallbackString:callbackId]];
+	}
+
+	/*
+	 *
+	 *   NSString *resultType = [arguments objectAtIndex:0];
+	 *   //NSLog(@"%@", resultType);
+	 *   CDVPluginResult *result;
+	 *
+	 *   if ([resultType isEqualToString:@"Title"]) {
+	 *    result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"Success! const kCDVCalendarALERT was evaluated by webview and created alert!"];
+	 *
+	 *    //NSLog(@"callbackId = '%@'", callbackId);
+	 *    [self writeJavascript:[result toSuccessCallbackString:callbackId]];
+	 *   } else {
+	 *    result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"resultType = 'error'! const kCDVCalendarALERT was evaluated by webview and created alert!"];
+	 *
+	 *    //NSLog(@"callbackId = '%@'", callbackId);
+	 *    [self writeJavascript:[result toErrorCallbackString:callbackId]];
+	 *   }
+	 *
+	 */
     
-// creating the dateformatter object
-NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
-[df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-NSDate	*myStartDate	= [df dateFromString:startDate];
-NSDate	*myEndDate		= [df dateFromString:endDate];
-
-myEvent.title		= title;
-myEvent.location	= location;
-myEvent.notes		= notes;
-myEvent.startDate	= myStartDate;
-myEvent.endDate		= myEndDate;
-myEvent.calendar	= self.eventStore.defaultCalendarForNewEvents;
-
-EKAlarm *reminder = [EKAlarm alarmWithRelativeOffset:-2 * 60 * 60];
-
-[myEvent addAlarm:reminder];
-
-NSError *error = nil;
-[self.eventStore saveEvent:myEvent span:EKSpanThisEvent error:&error];
-
-BOOL saved = [self.eventStore	saveEvent	:myEvent span:EKSpanThisEvent
-                                 error		:&error];
-
-if (saved) {
-    UIAlertView *alert = [[UIAlertView alloc]	initWithTitle		:title
-                                                  message				:@"Saved to Calendar" delegate:self
-                                           cancelButtonTitle	:@"Thank you!"
-                                           otherButtonTitles	:nil];
-    [alert show];
-    [alert release];
-}
-
-
-
-
-/*
-// Check error code + return result
-if (error) {
-    CDVPluginResult *pluginResult = [CDVPluginResult	resultWithStatus:CDVCommandStatus_ERROR
-                                                     messageAsString :error.userInfo.description];
-    [self writeJavascript:[pluginResult toErrorCallbackString:errFunc]];
-} else {
-    NSLog(@"Reached Success");
-    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-    [self writeJavascript:[pluginResult toSuccessCallbackString:succFunc]];
-}
-*/
-
-
-
+    
 }
 
 - (void)deleteEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
