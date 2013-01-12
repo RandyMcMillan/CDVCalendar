@@ -76,9 +76,9 @@
  
  
  
- CDVCalendar.prototype.createEvent = function(success, fail, resultType,title,location,notes,startDate,endDate,successCallback,errorCallback) {
+ CDVCalendar.prototype.createEvent = function(success, fail, title,location,notes,startDate,endDate) {
  
- cordovaRef.exec(success, fail, "CDVCalendar", "createEvent", [resultType,title,location,notes,startDate,endDate,successCallback,errorCallback]);
+ cordovaRef.exec(success, fail, "CDVCalendar", "createEvent", [title,location,notes,startDate,endDate]);
  
  }
  

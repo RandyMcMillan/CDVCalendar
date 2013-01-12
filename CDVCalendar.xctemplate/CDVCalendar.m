@@ -256,10 +256,17 @@
     NSLog(@"callbackId = '%@'", callbackId);
     NSString	*objectAtIndex0 = [arguments objectAtIndex:0];
 	NSLog(@"objectAtIndex0 = '%@'", objectAtIndex0);
-
+    NSString	*objectAtIndex1 = [arguments objectAtIndex:1];
+	NSLog(@"objectAtIndex1 = '%@'", objectAtIndex1);
 	
-	         NSString *objectAtIndex1 = [arguments objectAtIndex:1];
-	         NSLog(@"objectAtIndex1 = '%@'",objectAtIndex1);
+	         NSString *objectAtIndex2 = [arguments objectAtIndex:2];
+	         NSLog(@"objectAtIndex2 = '%@'",objectAtIndex2);
+    
+    NSString *objectAtIndex3 = [arguments objectAtIndex:3];
+    NSLog(@"objectAtIndex3 = '%@'",objectAtIndex3);
+    NSString *objectAtIndex4 = [arguments objectAtIndex:4];
+    NSLog(@"objectAtIndex4 = '%@'",objectAtIndex4);
+
 	 
 
 	NSLog(@"kCDVCalendarALERT = %@", kCDVCalendarALERT);

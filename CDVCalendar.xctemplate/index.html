@@ -79,10 +79,10 @@
                 
                 
                 //createEvent
-                function createEvt (returnSuccess){
+                function createEvt (title,location,notes){
                     
                     
-                    window.plugins.CDVCalendar.createEvent(createEventResultHandler,createEventErrorHandler,returnSuccess,returnSuccess);
+                    window.plugins.CDVCalendar.createEvent(createEventResultHandler,createEventErrorHandler,title,location,notes);
                     
                     
                 }
@@ -167,7 +167,7 @@
         <button onclick="buttonTwo();">buttonTwo!</button>
         <button onclick="init('success');">init!</button>
         <button onclick="nativeFunction('success');">nativeFunction!</button>
-        <button onclick="createEvt('success');">createEvt!</button>
+        <button onclick="createEvt('Title','Location','Notes');">createEvt!</button>
         
         
     </body>
