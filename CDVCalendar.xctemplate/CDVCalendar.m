@@ -53,20 +53,16 @@
 	CDVPluginResult *result;
 
 	if ([resultType isEqualToString:@"success"]) {
-		
-        result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"init success CDVCommandStatus_OK"];
+		result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"init success CDVCommandStatus_OK"];
 
 		NSLog(@"callbackId = '%@'", callbackId);
 		[self writeJavascript:[result toSuccessCallbackString:callbackId]];
-	
-    } else {
-	
-        result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"init else success CDVCommandStatus_OK"];
+	} else {
+		result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"init else success CDVCommandStatus_OK"];
 
 		NSLog(@"callbackId = '%@'", callbackId);
 		[self writeJavascript:[result toErrorCallbackString:callbackId]];
-	
-    }
+	}
 }
 
 - (void)nativeFunction:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
@@ -250,21 +246,28 @@
 {
 	NSLog(@"Hello, this is a createEvent function called from CDVCalendar!");
 
+    
+    EKEvent *myEvent = [EKEvent eventWithEventStore:self.eventStore];
+	// Import arguments
+    
+    
 	// get the callback id
 	NSString	*callbackId		= [arguments pop];
-	NSString	*objectAtIndex0 = [arguments objectAtIndex:0];
+    NSLog(@"callbackId = '%@'", callbackId);
+    NSString	*objectAtIndex0 = [arguments objectAtIndex:0];
 	NSLog(@"objectAtIndex0 = '%@'", objectAtIndex0);
 
-	/*
-	 *        NSString *objectAtIndex1 = [arguments objectAtIndex:1];
-	 *        NSLog(@"objectAtIndex1 = '%@'",objectAtIndex1);
-	 */
+	
+	         NSString *objectAtIndex1 = [arguments objectAtIndex:1];
+	         NSLog(@"objectAtIndex1 = '%@'",objectAtIndex1);
+	 
+
 	NSLog(@"kCDVCalendarALERT = %@", kCDVCalendarALERT);
 
 	CDVViewController *mvcCDVCalendar = (CDVViewController *)[super viewController];
-	NSLog(@"mvcCDVCalendar = %@", mvcCDVCalendar);
-	NSLog(@"mvcCDVCalendar.view = %@", mvcCDVCalendar.view);
-	NSLog(@"mvcCDVCalendar.webView = %@", mvcCDVCalendar.webView);
+	//NSLog(@"mvcCDVCalendar = %@", mvcCDVCalendar);
+	//NSLog(@"mvcCDVCalendar.view = %@", mvcCDVCalendar.view);
+	//NSLog(@"mvcCDVCalendar.webView = %@", mvcCDVCalendar.webView);
 
 	//    mvcCDVCalendar.webView.alpha = 0.5;
 
