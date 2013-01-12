@@ -246,35 +246,34 @@
 {
 	NSLog(@"Hello, this is a createEvent function called from CDVCalendar!");
 
-    
-    EKEvent *myEvent = [EKEvent eventWithEventStore:self.eventStore];
+	EKEvent *myEvent = [EKEvent eventWithEventStore:self.eventStore];
 	// Import arguments
-    
-    
-	// get the callback id
-	NSString	*callbackId		= [arguments pop];
-    NSLog(@"callbackId = '%@'", callbackId);
-    NSString	*objectAtIndex0 = [arguments objectAtIndex:0];
-	NSLog(@"objectAtIndex0 = '%@'", objectAtIndex0);
-    NSString	*objectAtIndex1 = [arguments objectAtIndex:1];
-	NSLog(@"objectAtIndex1 = '%@'", objectAtIndex1);
-	
-	         NSString *objectAtIndex2 = [arguments objectAtIndex:2];
-	         NSLog(@"objectAtIndex2 = '%@'",objectAtIndex2);
-    
-    NSString *objectAtIndex3 = [arguments objectAtIndex:3];
-    NSLog(@"objectAtIndex3 = '%@'",objectAtIndex3);
-    NSString *objectAtIndex4 = [arguments objectAtIndex:4];
-    NSLog(@"objectAtIndex4 = '%@'",objectAtIndex4);
 
-	 
+	// get the callback id
+	NSString *callbackId = [arguments pop];
+	NSLog(@"callbackId = '%@'", callbackId);
+
+	NSString *title = [arguments objectAtIndex:0];
+	NSLog(@"title = '%@'", title);
+
+	NSString *location = [arguments objectAtIndex:1];
+	NSLog(@"location = '%@'", location);
+
+	NSString *notes = [arguments objectAtIndex:2];
+	NSLog(@"notes = '%@'", notes);
+
+	NSString *startDate = [arguments objectAtIndex:3];
+	NSLog(@"startDate = '%@'", startDate);
+
+	NSString *endDate = [arguments objectAtIndex:4];
+	NSLog(@"endDate = '%@'", endDate);
 
 	NSLog(@"kCDVCalendarALERT = %@", kCDVCalendarALERT);
 
 	CDVViewController *mvcCDVCalendar = (CDVViewController *)[super viewController];
-	//NSLog(@"mvcCDVCalendar = %@", mvcCDVCalendar);
-	//NSLog(@"mvcCDVCalendar.view = %@", mvcCDVCalendar.view);
-	//NSLog(@"mvcCDVCalendar.webView = %@", mvcCDVCalendar.webView);
+	// NSLog(@"mvcCDVCalendar = %@", mvcCDVCalendar);
+	// NSLog(@"mvcCDVCalendar.view = %@", mvcCDVCalendar.view);
+	// NSLog(@"mvcCDVCalendar.webView = %@", mvcCDVCalendar.webView);
 
 	//    mvcCDVCalendar.webView.alpha = 0.5;
 
