@@ -18,16 +18,46 @@
  */
 //
 //  CDVCalendar
-//  CDVEmailComposer Template Created Jan 7 2013
+//  CDVCalendar Template Created Jan 7 2013
 //  Copyright 2013 @RandyMcMillan
 
-#import <Foundation/Foundation.h>
+//
+//  calendarPlugin.h
+//  Author: Felix Montanez
+//  Date: 01-17-2011
+//  Notes:
+//
 
+
+
+#import <Foundation/Foundation.h>
 #import <Cordova/CDVPlugin.h>
+#import <EventKitUI/EventKitUI.h>
+#import <EventKit/EventKit.h>
 
 @interface CDVCalendar : CDVPlugin {}
 
+
+@property (nonatomic, retain) EKEventStore* eventStore;
+
+- (void)initEventStoreWithCalendarCapabilities;
+
+-(NSArray*)findEKEventsWithTitle: (NSString *)title
+                        location: (NSString *)location
+                         message: (NSString *)message
+                       startDate: (NSDate *)startDate
+                         endDate: (NSDate *)endDate;
+
 - (void)init:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options;
 - (void)nativeFunction:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options;
+// Calendar Instance methods
+- (void)createEvent:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
+
+- (void)modifyEvent:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
+
+- (void)findEvent:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
+
+- (void)deleteEvent:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
+
 
 @end
