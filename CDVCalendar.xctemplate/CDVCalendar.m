@@ -270,13 +270,11 @@
 
 	NSLog(@"kCDVCalendarALERT = %@", kCDVCalendarALERT);
 
-	CDVViewController *mvcCDVCalendar = (CDVViewController *)[super viewController];
+	//CDVViewController *mvcCDVCalendar = (CDVViewController *)[super viewController];
 	// NSLog(@"mvcCDVCalendar = %@", mvcCDVCalendar);
 	// NSLog(@"mvcCDVCalendar.view = %@", mvcCDVCalendar.view);
 	// NSLog(@"mvcCDVCalendar.webView = %@", mvcCDVCalendar.webView);
-
 	//    mvcCDVCalendar.webView.alpha = 0.5;
-
     
     /*
     
