@@ -29,4 +29,6 @@ extern NSString *const kCDVCalendarINIT;
 
 extern NSString *const kCDVCalendarALERT;
 
+extern NSString *const kCDVCalendarSAVED;
+
 @end

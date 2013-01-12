@@ -77,16 +77,14 @@
 	 *        NSLog(@"objectAtIndex1 = '%@'",objectAtIndex1);
 	 */
 
-	NSLog(@"kCDVCalendarALERT = %@", kCDVCalendarALERT);
+	NSLog(@"kCDVCalendarSAVED = %@", kCDVCalendarSAVED);
 
 	CDVViewController *mvcCDVCalendar = (CDVViewController *)[super viewController];
 	NSLog(@"mvcCDVCalendar = %@", mvcCDVCalendar);
 	NSLog(@"mvcCDVCalendar.view = %@", mvcCDVCalendar.view);
 	NSLog(@"mvcCDVCalendar.webView = %@", mvcCDVCalendar.webView);
-
 	//    mvcCDVCalendar.webView.alpha = 0.5;
-
-	NSString *jsString = kCDVCalendarALERT;
+	NSString *jsString = kCDVCalendarSAVED;
 	[mvcCDVCalendar.webView stringByEvaluatingJavaScriptFromString:jsString];
 
 	NSString *resultType = [arguments objectAtIndex:0];
@@ -268,25 +266,7 @@
 	NSString *endDate = [arguments objectAtIndex:4];
 	// NSLog(@"endDate = '%@'", endDate);
 
-	// NSLog(@"kCDVCalendarALERT = %@", kCDVCalendarALERT);
-
-	// CDVViewController *mvcCDVCalendar = (CDVViewController *)[super viewController];
-	// NSLog(@"mvcCDVCalendar = %@", mvcCDVCalendar);
-	// NSLog(@"mvcCDVCalendar.view = %@", mvcCDVCalendar.view);
-	// NSLog(@"mvcCDVCalendar.webView = %@", mvcCDVCalendar.webView);
-	//    mvcCDVCalendar.webView.alpha = 0.5;
-
-	/*
-	 *
-	 *   rework in createEventWithDocWrite
-	 *
-	 *   NSString *jsString = kCDVCalendarALERT;
-	 *   [mvcCDVCalendar.webView stringByEvaluatingJavaScriptFromString:jsString];
-	 *
-	 *
-	 *
-	 */
-
+	
 	// creating the dateformatter object
 	NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
 
@@ -312,13 +292,42 @@
 									error		:&error];
 
 	if (saved) {
-		UIAlertView *alert = [[UIAlertView alloc]	initWithTitle		:title
+	
+        //Option native or navigator?
+        
+        /*
+        
+        UIAlertView *alert = [[UIAlertView alloc]	initWithTitle		:title
 													message				:@"Saved to Calendar" delegate:self
 													cancelButtonTitle	:@"Thank you!"
 													otherButtonTitles	:nil];
 		[alert show];
 		[alert release];
-	}
+        */
+        
+        
+        
+        NSLog(@"kCDVCalendarSAVED = %@", kCDVCalendarSAVED);
+        CDVViewController *mvcCDVCalendar = (CDVViewController *)[super viewController];
+        NSLog(@"mvcCDVCalendar = %@", mvcCDVCalendar);
+        NSLog(@"mvcCDVCalendar.view = %@", mvcCDVCalendar.view);
+        NSLog(@"mvcCDVCalendar.webView = %@", mvcCDVCalendar.webView);
+        //    mvcCDVCalendar.webView.alpha = 0.5;
+        NSString *jsString = kCDVCalendarSAVED;
+        [mvcCDVCalendar.webView stringByEvaluatingJavaScriptFromString:jsString];
+        
+
+    
+
+
+
+
+
+
+
+
+
+    }
 
 	// Check error code + return result
 	if (error) {
