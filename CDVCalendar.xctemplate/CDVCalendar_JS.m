@@ -18,7 +18,7 @@
  */
 //
 //  CDVCalendar
-//  CDVEmailComposer Template Created Jan 7 2013
+//  CDVCalendar Template Created Jan 7 2013
 //  Copyright 2013 @RandyMcMillan
 //
 
@@ -28,8 +28,8 @@
 
 // /Remove line breaks/returns to use as one constant string!
 
-NSString *const kCDVCalendarINIT = @"console.log('CDVCalendar Cordova Plugin is initialized.')";
+NSString *const kCDVCalendarINIT = @"console.log('kCDVCalendarINIT = CDVCalendar Cordova Plugin is initialized.')";
 
-NSString *const kCDVCalendarALERT = @"navigator.notification.alert('Cordova  CDVCalendar Plugin is working!')";
+NSString *const kCDVCalendarALERT = @"navigator.notification.alert('kCDVCalendarALERT = Cordova  CDVCalendar Plugin is working!')";
 
 @end

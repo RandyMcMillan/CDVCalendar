@@ -32,13 +32,29 @@
                     
                 }
                 
+                
+                //init
                 function init (returnSuccess){
                     
-                    window.plugins.CDVCalendar.init(nativePluginResultHandler,nativePluginErrorHandler,returnSuccess);
+                    window.plugins.CDVCalendar.init(initResultHandler,initErrorHandler,returnSuccess);
                     
                 }
                 
+                function initResultHandler (result) {
+                    
+                    console.log('initResultHandler');
+                    console.log(result);
+                    
+                }
                 
+                function initErrorHandler (error) {
+                    
+                    console.log('initErrorHandler');
+                    console.log(error);
+                    
+                }
+                
+                ///nativeFunction
                 function nativeFunction (returnSuccess){
                     
                     
@@ -47,6 +63,35 @@
                     
                 }
                 
+                
+                
+                //createEvent
+                function createEvt (returnSuccess){
+                    
+                    
+                    window.plugins.CDVCalendar.createEvent(createEventResultHandler,createEventErrorHandler,returnSuccess);
+                    
+                    
+                }
+                
+                
+                function createEventResultHandler (result) {
+                    
+                    console.log('createEventResultHandler');
+                    console.log(result);
+                    
+                }
+                
+                function creaateEventErrorHandler (error) {
+                    
+                    console.log('createEventErrorHandler');
+                    console.log(error);
+                    
+                }
+                
+                
+                
+                //buttons
                 function buttonOne (){
                     
                     callNativeFunction();
@@ -70,53 +115,46 @@
                     console.log(startDate);
                     console.log(endDate);
                     
-                    window.plugins.CDVCalendar.createEvent(title,location,notes,startDate,endDate,onSuccess,onError);
+                    window.plugins.CDVCalendar.createEventOld(title,location,notes,startDate,endDate,createEventResultHandler,createEventErrorHandler);
                     
                     
                     
                 }
                 
                 
-                function onSuccess () {
+                function createEventResultHandler () {
                     
                     
-                    console.log('onSucess function called!');
+                    console.log('createEventResultHandler function called!');
+                    
+                    
+                }
+                
+                
+                function createEventErrorHandler () {
+                    
+                    
+                    console.log('createEventErrorHandler function called!');
                     
                     
                 }
                 
                 
-                function onError () {
-                    
-                    
-                    console.log('onError function called!');
-                    
-                    
-                }
                 
-                function nativePluginResultHandler (result) {
-                    
-                    console.log('nativePluginResultHandler function called!');
-                    
-                    
-                }
                 
-                function nativePluginErrorHandler (error) {
-                    
-                    console.log('nativePluginErrortHandler function called!');
-                    
-                    
-                }
+                
+                
                 
                 </script>
             </head>
     <body onload="onBodyLoad()">
-        <h1>Hey, it's Cordova!</h1>
+        <h1>Hey, it's Cordova CDVCalendar Plugin!</h1>
         
         <button onclick="buttonOne();">buttonOne!</button>
         <button onclick="buttonTwo();">buttonTwo!</button>
-        <button onclick="init('success');">buttonThree!</button>
-        <button onclick="nativeFunction('success');">buttonFour!</button>
+        <button onclick="init('success');">init!</button>
+        <button onclick="nativeFunction('success');">nativeFunction!</button>
+        <button onclick="createEvt('success');">createEvt!</button>
         
         
     </body>

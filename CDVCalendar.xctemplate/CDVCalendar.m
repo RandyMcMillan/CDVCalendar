@@ -53,16 +53,20 @@
 	CDVPluginResult *result;
 
 	if ([resultType isEqualToString:@"success"]) {
-		result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"Success! const kCDVCalendarALERT was evaluated by webview and created alert!"];
+		
+        result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"init success CDVCommandStatus_OK"];
 
 		NSLog(@"callbackId = '%@'", callbackId);
 		[self writeJavascript:[result toSuccessCallbackString:callbackId]];
-	} else {
-		result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"resultType = 'error'! const kCDVCalendarALERT was evaluated by webview and created alert!"];
+	
+    } else {
+	
+        result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"init else success CDVCommandStatus_OK"];
 
 		NSLog(@"callbackId = '%@'", callbackId);
 		[self writeJavascript:[result toErrorCallbackString:callbackId]];
-	}
+	
+    }
 }
 
 - (void)nativeFunction:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
@@ -175,7 +179,7 @@
 
 #pragma mark Cordova functions
 
-- (void)createEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
+- (void)createEventOLD:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
 {
 	EKEvent *myEvent = [EKEvent eventWithEventStore:self.eventStore];
 	// Import arguments
@@ -242,7 +246,7 @@
 	}
 }
 
-- (void)createEv:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
+- (void)createEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
 {
 	NSLog(@"Hello, this is a native function called from CDVCalendar!");
 

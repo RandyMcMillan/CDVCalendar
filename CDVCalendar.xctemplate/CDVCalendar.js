@@ -43,15 +43,23 @@
  
  }
  
+ /*
+  CDVCalendar.prototype.nativePluginResultHandler = function(result) {
+  
+  console.log(result);
+  
+  }
+  
+  
+  CDVCalendar.prototype.nativePluginErrorHandler = function(error) {
+  
+  console.log(error);
+  
+  }
+  */
  
- CDVCalendar.prototype.nativePluginResultHandler = function( result ) { console.log(success); }
  
- 
- CDVCalendar.prototype.nativePluginErrorHandler = function( error ) { console.log(error); }
- 
- 
- 
- CDVCalendar.prototype.createEvent = function(title,location,notes,startDate,endDate,successCallback, errorCallback) {
+ CDVCalendar.prototype.createEventOLD = function(title,location,notes,startDate,endDate,successCallback, errorCallback) {
  if (typeof errorCallback != "function")  {
  console.log("calendarPlugin.createEvent failure: errorCallback parameter must be a function");
  return
@@ -63,6 +71,20 @@
  }
  cordova.exec(successCallback,errorCallback,"CDVCalendar","createEvent", [title,location,notes,startDate,endDate,successCallback,errorCallback]);
  };
+ 
+ 
+ 
+ 
+ 
+ CDVCalendar.prototype.createEvent = function(success, fail, resultType) {
+ 
+ cordovaRef.exec(success, fail, "CDVCalendar", "createEvent", [resultType]);
+ 
+ }
+ 
+ 
+ 
+ 
  
  CDVCalendar.prototype.deleteEvent = function(title,location,notes,startDate,endDate,successCallback, errorCallback) {
  if (typeof errorCallback != "function")  {
