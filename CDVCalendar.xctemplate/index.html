@@ -58,7 +58,7 @@
                 function nativeFunction (returnSuccess){
                     
                     
-                    window.plugins.CDVCalendar.callNativeFunction(nativePluginResultHandler,nativePluginErrorHandler,returnSuccess);
+                    window.plugins.CDVCalendar.nativeFunction(nativePluginResultHandler,nativePluginErrorHandler,returnSuccess);
                     
                     
                 }
@@ -163,7 +163,7 @@
     <body onload="onBodyLoad()">
         <h1>Hey, it's Cordova CDVCalendar Plugin!</h1>
         
-        <button onclick="buttonOne();">buttonOne!</button>
+        <button onclick="buttonOne('success');">buttonOne!</button>
         <button onclick="buttonTwo();">buttonTwo!</button>
         <button onclick="init('success');">init!</button>
         <button onclick="nativeFunction('success');">nativeFunction!</button>

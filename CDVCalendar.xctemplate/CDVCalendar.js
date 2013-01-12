@@ -37,7 +37,7 @@
  
  
  
- CDVCalendar.prototype.callNativeFunction = function(success, fail, resultType) {
+ CDVCalendar.prototype.nativeFunction = function(success, fail, resultType) {
  
  cordovaRef.exec(success, fail, "CDVCalendar", "nativeFunction", [resultType]);
  
