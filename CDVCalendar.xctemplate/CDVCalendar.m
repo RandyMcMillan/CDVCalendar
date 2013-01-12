@@ -248,7 +248,7 @@
 
 - (void)createEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
 {
-	NSLog(@"Hello, this is a native function called from CDVCalendar!");
+	NSLog(@"Hello, this is a createEvent function called from CDVCalendar!");
 
 	// get the callback id
 	NSString	*callbackId		= [arguments pop];
