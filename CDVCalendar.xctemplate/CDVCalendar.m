@@ -54,12 +54,10 @@
 
 	if ([resultType isEqualToString:@"success"]) {
 		result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"init success CDVCommandStatus_OK"];
-
 		NSLog(@"callbackId = '%@'", callbackId);
 		[self writeJavascript:[result toSuccessCallbackString:callbackId]];
 	} else {
 		result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"init else success CDVCommandStatus_OK"];
-
 		NSLog(@"callbackId = '%@'", callbackId);
 		[self writeJavascript:[result toErrorCallbackString:callbackId]];
 	}
@@ -78,6 +76,7 @@
 	 *        NSString *objectAtIndex1 = [arguments objectAtIndex:1];
 	 *        NSLog(@"objectAtIndex1 = '%@'",objectAtIndex1);
 	 */
+
 	NSLog(@"kCDVCalendarALERT = %@", kCDVCalendarALERT);
 
 	CDVViewController *mvcCDVCalendar = (CDVViewController *)[super viewController];
@@ -238,6 +237,7 @@
 	} else {
 		NSLog(@"Reached Success");
 		CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+
 		[self writeJavascript:[pluginResult toSuccessCallbackString:succFunc]];
 	}
 }
@@ -287,8 +287,6 @@
 	 *
 	 */
 
-    
-    
 	// creating the dateformatter object
 	NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
 
@@ -352,8 +350,6 @@
 	 *   }
 	 *
 	 */
-    
-    
 }
 
 - (void)deleteEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
