@@ -52,6 +52,7 @@
 - (void)nativeFunction:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options;
 // Calendar Instance methods
 - (void)createEvent:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
+- (void)createEv:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options;
 
 - (void)modifyEvent:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
 

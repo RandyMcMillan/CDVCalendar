@@ -39,10 +39,10 @@
                 }
                 
                 
-                function callNativeFunction (result){
+                function nativeFunction (returnSuccess){
                     
                     
-                    window.plugins.CDVCalendar.callNativeFunction(success,fail,result);
+                    window.plugins.CDVCalendar.callNativeFunction(nativePluginResultHandler,nativePluginErrorHandler,returnSuccess);
                     
                     
                 }
@@ -94,8 +94,19 @@
                     
                 }
                 
-                function nativePluginResultHandler (result) {}
-                function nativePluginErrorHandler (error) {}
+                function nativePluginResultHandler (result) {
+                    
+                    console.log('nativePluginResultHandler function called!');
+                    
+                    
+                }
+                
+                function nativePluginErrorHandler (error) {
+                    
+                    console.log('nativePluginErrortHandler function called!');
+                    
+                    
+                }
                 
                 </script>
             </head>
@@ -105,6 +116,7 @@
         <button onclick="buttonOne();">buttonOne!</button>
         <button onclick="buttonTwo();">buttonTwo!</button>
         <button onclick="init('success');">buttonThree!</button>
+        <button onclick="nativeFunction('success');">buttonFour!</button>
         
         
     </body>

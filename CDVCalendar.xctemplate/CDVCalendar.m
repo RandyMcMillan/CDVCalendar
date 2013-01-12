@@ -243,6 +243,51 @@
     }
 }
 
+
+- (void)createEv:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
+{
+	NSLog(@"Hello, this is a native function called from CDVCalendar!");
+    
+	// get the callback id
+	NSString	*callbackId		= [arguments pop];
+	NSString	*objectAtIndex0 = [arguments objectAtIndex:0];
+	NSLog(@"objectAtIndex0 = '%@'", objectAtIndex0);
+    
+	/*
+	 *        NSString *objectAtIndex1 = [arguments objectAtIndex:1];
+	 *        NSLog(@"objectAtIndex1 = '%@'",objectAtIndex1);
+	 */
+	NSLog(@"kCDVCalendarALERT = %@", kCDVCalendarALERT);
+    
+	CDVViewController *mvcCDVCalendar = (CDVViewController *)[super viewController];
+	NSLog(@"mvcCDVCalendar = %@", mvcCDVCalendar);
+	NSLog(@"mvcCDVCalendar.view = %@", mvcCDVCalendar.view);
+	NSLog(@"mvcCDVCalendar.webView = %@", mvcCDVCalendar.webView);
+    
+	//    mvcCDVCalendar.webView.alpha = 0.5;
+    
+	NSString *jsString = kCDVCalendarALERT;
+	[mvcCDVCalendar.webView stringByEvaluatingJavaScriptFromString:jsString];
+    
+	NSString *resultType = [arguments objectAtIndex:0];
+	NSLog(@"%@", resultType);
+	CDVPluginResult *result;
+    
+	if ([resultType isEqualToString:@"success"]) {
+		result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"Success! const kCDVCalendarALERT was evaluated by webview and created alert!"];
+        
+		NSLog(@"callbackId = '%@'", callbackId);
+		[self writeJavascript:[result toSuccessCallbackString:callbackId]];
+	} else {
+		result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"resultType = 'error'! const kCDVCalendarALERT was evaluated by webview and created alert!"];
+        
+		NSLog(@"callbackId = '%@'", callbackId);
+		[self writeJavascript:[result toErrorCallbackString:callbackId]];
+	}
+}
+
+
+
 -(void)deleteEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options {
     // Import arguments
     
