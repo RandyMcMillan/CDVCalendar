@@ -16,13 +16,11 @@
  specific language governing permissions and limitations
  under the License.
  */
-
-//  Based on https://github.com/felixactv8/Phonegap-Calendar-Plugin-ios
-//  Author: Felix Montanez
 //
 //  CDVCalendar
 //  CDVCalendar Template Created Jan 7 2013
 //  Copyright 2013 @RandyMcMillan
+//
 
 (function() {
  
@@ -34,21 +32,8 @@
  
  //init
  CDVCalendar.prototype.init = function(success, fail, resultType) {
- 
  cordovaRef.exec(success, fail, "CDVCalendar", "init", [resultType]);
- 
  }
- 
- 
- 
- //nativeFunction
- CDVCalendar.prototype.nativeFunction = function(success, fail, resultType) {
- 
- cordovaRef.exec(success, fail, "CDVCalendar", "nativeFunction", [resultType]);
- 
- }
- 
- 
  
  //createEvent
  CDVCalendar.prototype.createEvent = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
@@ -64,39 +49,6 @@
  cordovaRef.exec(successCallback, errorCallback, "CDVCalendar", "createEvent", [title,location,notes,startDate,endDate]);
  }
  
- 
- 
- 
- //deleteEvent
- CDVCalendar.prototype.deleteEvent = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
- if (typeof errorCallback != "function")  {
- console.log("calendarPlugin.deleteEvent failure: errorCallback parameter must be a function");
- return
- }
- if (typeof successCallback != "function") {
- console.log("calendarPlugin.deleteEvent failure: successCallback parameter must be a function");
- return
- }
- cordovaRef.exec(successCallback,errorCallback,"CDVCalendar","deleteEvent", [title,location,notes,startDate,endDate]);
- }
- 
- 
- 
- //findEvent
- CDVCalendar.prototype.findEvent = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
- if (typeof errorCallback != "function")  {
- console.log("calendarPlugin.findEvent failure: errorCallback parameter must be a function");
- return
- }
- if (typeof successCallback != "function") {
- console.log("calendarPlugin.findEvent failure: successCallback parameter must be a function");
- return
- }
- cordovaRef.exec(successCallback,errorCallback,"CDVCalendar","findEvent", [title,location,notes,startDate,endDate]);
- }
- 
- 
- 
  //modifyEvent
  CDVCalendar.prototype.modifyEvent = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
  if (typeof errorCallback != "function")  {
@@ -111,7 +63,31 @@
  cordovaRef.exec(successCallback,errorCallback,"CDVCalendar","modifyEvent", [title,location,notes,startDate,endDate]);
  }
  
+ //deleteEvent
+ CDVCalendar.prototype.deleteEvent = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
+ if (typeof errorCallback != "function")  {
+ console.log("calendarPlugin.deleteEvent failure: errorCallback parameter must be a function");
+ return
+ }
+ if (typeof successCallback != "function") {
+ console.log("calendarPlugin.deleteEvent failure: successCallback parameter must be a function");
+ return
+ }
+ cordovaRef.exec(successCallback,errorCallback,"CDVCalendar","deleteEvent", [title,location,notes,startDate,endDate]);
+ }
  
+ //findEvent
+ CDVCalendar.prototype.findEvent = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
+ if (typeof errorCallback != "function")  {
+ console.log("calendarPlugin.findEvent failure: errorCallback parameter must be a function");
+ return
+ }
+ if (typeof successCallback != "function") {
+ console.log("calendarPlugin.findEvent failure: successCallback parameter must be a function");
+ return
+ }
+ cordovaRef.exec(successCallback,errorCallback,"CDVCalendar","findEvent", [title,location,notes,startDate,endDate]);
+ }
  
  //install
  CDVCalendar.install = function(){
