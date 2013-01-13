@@ -27,7 +27,7 @@
  var cordovaRef = window.PhoneGap || window.Cordova || window.cordova; // old to new fallbacks
  
  function CDVCalendar(){}
-
+ 
  
  
  //init
@@ -111,15 +111,16 @@
  
  
  
+ //install
+ CDVCalendar.install = function(){
  
- CDVCalendar.install = function()
- {
  if ( !window.plugins ) {
  window.plugins = {};
  }
  if ( !window.plugins.CDVCalendar ) {
  window.plugins.CDVCalendar = new CDVCalendar();
  }
+ 
  }
  
  if (cordovaRef && cordovaRef.addConstructor) {
