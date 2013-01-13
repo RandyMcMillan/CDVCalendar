@@ -161,29 +161,31 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
 		[predicateString appendString:[NSString stringWithFormat:@"title LIKE '%@'", title]];
 	}
 
-	/*if (location.length > 0) {
+	if (location.length > 0) {
 		[predicateString appendString:[NSString stringWithFormat:@" AND location LIKE '%@'", location]];
 	}
-
-	if (message.length > 0) {
+    
+    /*
+     ///Filtering isn't liking this
+        if (message.length > 0) {
 		[predicateString appendString:[NSString stringWithFormat:@" AND message LIKE '%@'", message]];
-	}*/
+        }
+    */
 
     
 	NSPredicate *matches = [NSPredicate predicateWithFormat:predicateString];
     NSLog(@"___________ matches = %@",matches);
     [predicateString release];
 
-    //NSArray *eventsArray = [[self.eventStore eventsMatchingPredicate:[eventStore predicateForEventsWithStartDate:startDate endDate:endDate calendars:nil]] filteredArrayUsingPredicate:matches];
+    NSArray *matchingEvents = [[self.eventStore eventsMatchingPredicate:[eventStore predicateForEventsWithStartDate:startDate endDate:endDate calendars:nil]] filteredArrayUsingPredicate:matches];
 
     
+    //NSArray *eventsArray =
+    //[self.eventStore eventsMatchingPredicate:[eventStore predicateForEventsWithStartDate:startDate endDate:endDate calendars:nil]];
     
-    NSArray *eventsArray = [self.eventStore eventsMatchingPredicate:[eventStore predicateForEventsWithStartDate:startDate endDate:endDate calendars:nil]];
-    
-    NSLog(@"_____________ eventsArray objectAtIndex:0 = %@", [eventsArray objectAtIndex:0]);
+    //NSLog(@"_____________ eventsArray objectAtIndex:0 = %@", [eventsArray objectAtIndex:0]);
 
-    //NSArray *matchingEvents = eventsArray;
-    NSArray *matchingEvents = [eventsArray filteredArrayUsingPredicate:matches];
+    //NSArray *matchingEvents = [eventsArray filteredArrayUsingPredicate:matches];
 
     NSLog(@"_____________ return matchingEvents");
 	return matchingEvents;
