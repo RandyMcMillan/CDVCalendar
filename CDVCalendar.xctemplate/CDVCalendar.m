@@ -257,6 +257,14 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
     // Find matches
     NSArray *matchingEvents = [self findEKEventsWithTitle:title location:location message:message startDate:myStartDate endDate:myEndDate];
     
+    
+    if (matchingEvents.count == 0) {
+        
+        NSLog(@"matchingEvents.count = %i", matchingEvents.count);
+        
+    }
+
+    
     if (matchingEvents.count == 1) {
         // Presume we have to have an exact match to modify it!
         // Need to load this event from an EKEventStore so we can edit it
@@ -288,6 +296,13 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
         CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT];
         [self writeJavascript:[pluginResult toErrorCallbackString:callbackId]];
     }
+    
+    if (matchingEvents.count > 1) {
+        
+        NSLog(@"matchingEvents.count = %i", matchingEvents.count);
+        
+    }
+
     
 }
 
