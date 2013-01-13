@@ -55,50 +55,8 @@
                     
                 }
                 
-                //nativeFunction
-                function nativeFunction (returnSuccess){
-                    
-                    
-                    window.plugins.CDVCalendar.nativeFunction(nativePluginResultHandler,nativePluginErrorHandler,returnSuccess);
-                    
-                    
-                }
-                
-                function nativePluginResultHandler (result) {
-                    
-                    console.log('nativePluginResultHandler');
-                    console.log(result);
-                    
-                }
-                
-                function nativePluginErrorHandler (error) {
-                    
-                    console.log('nativePluginErrorHandler');
-                    console.log(error);
-                    
-                }
                 
                 
-                //createEvent
-                function createEvt (title,location,notes,startDate,endDate){
-                    
-                    
-                    window.plugins.CDVCalendar.createEvent(createEventResultHandler,createEventErrorHandler,title,location,notes,startDate,endDate);
-                    
-                    
-                }
-                
-                // createEventResultHandler defined CDVCalendar.createEvent(...)
-                function createEventResultHandler (result) {
-                    console.log(result);
-                    console.log('createEventResultHandler');
-                }
-                
-                // createEventResultHandler defined CDVCalendar.createEvent(...)
-                function createEventErrorHandler (error) {
-                    console.log(error);
-                    console.log('createEventErrorHandler');
-                }
                 
                 // calAlertDismissed dialog dismissed
                 function calAlertDismissed() {
@@ -109,19 +67,19 @@
                 //buttons
                 function buttonOne (){
                     
-                    console.log("creating event");
+                    console.log("create event");
                     var title= "Appt";
                     var location = "Los Angeles";
                     var notes = "This is a sample note";
                     var startDate = "2013-01-16 09:30:00";
                     var endDate =   "2013-01-16 12:30:00";
-                    
-                    console.log(title);
-                    console.log(location);
-                    console.log(notes);
-                    console.log(startDate);
-                    console.log(endDate);
-                    
+                    /*
+                     console.log(title);
+                     console.log(location);
+                     console.log(notes);
+                     console.log(startDate);
+                     console.log(endDate);
+                     */
                     window.plugins.CDVCalendar.createEvent(createEventResultHandler,createEventErrorHandler,title,location,notes,startDate,endDate);
                     
                     
@@ -129,57 +87,90 @@
                 }
                 
                 
+                // createEventResultHandler defined CDVCalendar.createEvent(...)
+                function createEventResultHandler (result) {
+                    console.log(result);
+                    console.log('createEventResultHandler');
+                }
+                
+                // createEventErrorHandler defined CDVCalendar.createEvent(...)
+                function createEventErrorHandler (error) {
+                    console.log(error);
+                    console.log('createEventErrorHandler');
+                }
+                
+                
+                
                 function buttonTwo (){
                     
-                    console.log("creating event");
+                    console.log("modify event");
                     var title= "Appt";
                     var location = "Los Angeles";
                     var notes = "This is a sample note modified";
                     var startDate = "2013-01-16 09:30:00";
                     var endDate =   "2013-01-16 12:30:00";
-                    
-                    console.log(title);
-                    console.log(location);
-                    console.log(notes);
-                    console.log(startDate);
-                    console.log(endDate);
-                    
-                    window.plugins.CDVCalendar.modifyEvent(createEventResultHandler,createEventErrorHandler,title,location,notes,startDate,endDate);
+                    /*
+                     console.log(title);
+                     console.log(location);
+                     console.log(notes);
+                     console.log(startDate);
+                     console.log(endDate);
+                     */
+                    window.plugins.CDVCalendar.modifyEvent(modifyEventResultHandler,modifyEventErrorHandler,title,location,notes,startDate,endDate);
                     
                     
                     
                 }
+                
+                // modifyEventResultHandler defined CDVCalendar.modifyEvent(...)
+                function modifyEventResultHandler (result) {
+                    console.log(result);
+                    console.log('modifyEventResultHandler');
+                }
+                
+                // modifyEventErrorHandler defined CDVCalendar.modifyEvent(...)
+                function modifyEventErrorHandler (error) {
+                    console.log(error);
+                    console.log('modifyEventErrorHandler');
+                }
+                
+                
                 
                 function buttonThree (){
                     
-                    console.log("creating event");
+                    console.log("delete event");
                     var title= "Appt";
                     var location = "Los Angeles";
-                    var notes = "This event should exist!";
+                    var notes = "This event shouldn't exist after this!";
                     var startDate = "2013-01-16 09:30:00";
                     var endDate =   "2013-01-16 12:30:00";
-                    
-                    console.log(title);
-                    console.log(location);
-                    console.log(notes);
-                    console.log(startDate);
-                    console.log(endDate);
-                    
-                    window.plugins.CDVCalendar.deleteEvent(createEventResultHandler,createEventErrorHandler,title,location,notes,startDate,endDate);
+                    /*
+                     console.log(title);
+                     console.log(location);
+                     console.log(notes);
+                     console.log(startDate);
+                     console.log(endDate);
+                     */
+                    window.plugins.CDVCalendar.deleteEvent(deleteEventResultHandler,deleteEventErrorHandler,title,location,notes,startDate,endDate);
                     
                     
                     
                 }
                 
+                // modifyEventResultHandler defined CDVCalendar.deleteEvent(...)
+                function deleteEventResultHandler (result) {
+                    console.log(result);
+                    console.log('deleteEventResultHandler');
+                }
                 
-                function createEventOldResultHandler () {
-                    console.log('createEventOldResultHandler function called!');
+                // modifyEventResultHandler defined CDVCalendar.deleteEvent(...)
+                function deleteEventErrorHandler (error) {
+                    console.log(error);
+                    console.log('deleteEventErrorHandler');
                 }
                 
                 
-                function createEventOldErrorHandler () {
-                    console.log('createEventOldErrorHandler function called!');
-                }
+                
                 
                 </script>
             </head>
@@ -190,9 +181,6 @@
         <button onclick="buttonOne();">Create!</button>
         <button onclick="buttonTwo();">Modify!</button>
         <button onclick="buttonThree();">Delete!</button>
-        
-        <button onclick="nativeFunction('success');">nativeFunction!</button>
-        <button onclick="createEvt('Title','Location','Notes...','1970-01-01 00:00:00','1970-01-01 01:01:01');">createEvt!</button>
         
     </body>
 </html>
