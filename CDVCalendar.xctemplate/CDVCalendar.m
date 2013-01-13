@@ -39,7 +39,7 @@ NSString *const kCDVCalendarINIT = @"console.log('kCDVCalendarINIT = CDVCalendar
 
 NSString *const kCDVCalendarALERT = @"navigator.notification.alert('kCDVCalendarALERT = Cordova  CDVCalendar Plugin is working!')";
 
-NSString *const kCDVCalendarSAVED = @"navigator.notification.alert('message',alertDismissed,'Event Saved','OK');";
+NSString *const kCDVCalendarSAVED = @"navigator.notification.alert('MESSAGE',calAlertDismissed,'Event Saved','OK');";
 
 NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',docWrite,'Event Saved','OK');";
 
