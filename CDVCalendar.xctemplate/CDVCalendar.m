@@ -21,15 +21,15 @@
 //  CDVCalendar Template Created Jan 7 2013
 //  Copyright 2013 @RandyMcMillan
 
+#import <EventKitUI/EventKitUI.h>
+#import <EventKit/EventKit.h>
 #import <Cordova/CDVAvailability.h>
 #import <Cordova/CDVViewController.h>
 #import <Cordova/CDVDebug.h>
 
 #import "CDVCalendar.h"
-//#import "CDVCalendar_JS.h"
 
-#import <EventKitUI/EventKitUI.h>
-#import <EventKit/EventKit.h>
+
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
