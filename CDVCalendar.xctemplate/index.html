@@ -90,11 +90,13 @@
                 
                 // createEventResultHandler defined CDVCalendar.createEvent(...)
                 function createEventResultHandler (result) {
+                    console.log(result);
                     console.log('createEventResultHandler');
                 }
                 
                 // createEventResultHandler defined CDVCalendar.createEvent(...)
                 function createEventErrorHandler (error) {
+                    console.log(error);
                     console.log('createEventErrorHandler');
                 }
                 
@@ -106,14 +108,9 @@
                 
                 //buttons
                 function buttonOne (){
-                    nativeFunction('success');
-                }
-                
-                
-                function buttonTwo (){
                     
                     console.log("creating event");
-                    var title= "My Sample Appt";
+                    var title= "Appt";
                     var location = "Los Angeles";
                     var notes = "This is a sample note";
                     var startDate = "2013-01-16 09:30:00";
@@ -126,6 +123,49 @@
                     console.log(endDate);
                     
                     window.plugins.CDVCalendar.createEvent(createEventResultHandler,createEventErrorHandler,title,location,notes,startDate,endDate);
+                    
+                    
+                    
+                }
+                
+                
+                function buttonTwo (){
+                    
+                    console.log("creating event");
+                    var title= "Appt";
+                    var location = "Los Angeles";
+                    var notes = "This is a sample note modified";
+                    var startDate = "2013-01-16 09:30:00";
+                    var endDate =   "2013-01-16 12:30:00";
+                    
+                    console.log(title);
+                    console.log(location);
+                    console.log(notes);
+                    console.log(startDate);
+                    console.log(endDate);
+                    
+                    window.plugins.CDVCalendar.modifyEvent(createEventResultHandler,createEventErrorHandler,title,location,notes,startDate,endDate);
+                    
+                    
+                    
+                }
+                
+                function buttonThree (){
+                    
+                    console.log("creating event");
+                    var title= "Appt";
+                    var location = "Los Angeles";
+                    var notes = "This event should exist!";
+                    var startDate = "2013-01-16 09:30:00";
+                    var endDate =   "2013-01-16 12:30:00";
+                    
+                    console.log(title);
+                    console.log(location);
+                    console.log(notes);
+                    console.log(startDate);
+                    console.log(endDate);
+                    
+                    window.plugins.CDVCalendar.deleteEvent(createEventResultHandler,createEventErrorHandler,title,location,notes,startDate,endDate);
                     
                     
                     
@@ -146,9 +186,11 @@
     <body onload="onBodyLoad()">
         <h1>Hey, it's Cordova CDVCalendar Plugin!</h1>
         
-        <button onclick="buttonOne();">buttonOne!</button>
-        <button onclick="buttonTwo();">buttonTwo!</button>
         <button onclick="init('success');">init!</button>
+        <button onclick="buttonOne();">Create!</button>
+        <button onclick="buttonTwo();">Modify!</button>
+        <button onclick="buttonThree();">Delete!</button>
+        
         <button onclick="nativeFunction('success');">nativeFunction!</button>
         <button onclick="createEvt('Title','Location','Notes...','1970-01-01 00:00:00','1970-01-01 01:01:01');">createEvt!</button>
         
