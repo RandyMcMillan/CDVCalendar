@@ -292,9 +292,13 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
         }
     }
     else {
+        
+        
         // Otherwise return a no result error
         CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT];
         [self writeJavascript:[pluginResult toErrorCallbackString:callbackId]];
+    
+    
     }
     
     if (matchingEvents.count > 1) {
