@@ -25,6 +25,7 @@
 
 @interface CDVCalendar_JS : NSObject {}
 
+/*
 extern NSString *const kCDVCalendarINIT;
 
 extern NSString *const kCDVCalendarALERT;
@@ -32,5 +33,6 @@ extern NSString *const kCDVCalendarALERT;
 extern NSString *const kCDVCalendarSAVED;
 
 extern NSString *const kCDVCalendarDocWrite;
+*/
 
 @end

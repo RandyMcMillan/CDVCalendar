@@ -28,10 +28,12 @@
 
 // /Remove line breaks/returns to use as one constant string!
 
+
+/*
 NSString *const kCDVCalendarINIT = @"console.log('kCDVCalendarINIT = CDVCalendar Cordova Plugin is initialized.')";
 
 NSString *const kCDVCalendarALERT = @"navigator.notification.alert('kCDVCalendarALERT = Cordova  CDVCalendar Plugin is working!')";
-
+*/
 
 /*
  
@@ -57,11 +59,13 @@ REF: http://docs.phonegap.com/en/2.3.0rc2/cordova_notification_notification.md.h
  DONT PUT THE FUNCTION NAME IN QUOTES!
  */
 
+/*
 NSString *const kCDVCalendarSAVED = @"navigator.notification.alert('message',alertDismissed,'Event Saved','OK');";
 
 
 
 //trigger a docWrite with alert?
 NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',docWrite,'Event Saved','OK');";
+*/
 
 @end

@@ -26,7 +26,7 @@
 #import <Cordova/CDVDebug.h>
 
 #import "CDVCalendar.h"
-#import "CDVCalendar_JS.h"
+//#import "CDVCalendar_JS.h"
 
 #import <EventKitUI/EventKitUI.h>
 #import <EventKit/EventKit.h>
@@ -34,6 +34,14 @@
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 @implementation CDVCalendar
+
+NSString *const kCDVCalendarINIT = @"console.log('kCDVCalendarINIT = CDVCalendar Cordova Plugin is initialized.')";
+
+NSString *const kCDVCalendarALERT = @"navigator.notification.alert('kCDVCalendarALERT = Cordova  CDVCalendar Plugin is working!')";
+
+NSString *const kCDVCalendarSAVED = @"navigator.notification.alert('message',alertDismissed,'Event Saved','OK');";
+
+NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',docWrite,'Event Saved','OK');";
 
 @synthesize eventStore;
 
