@@ -1,10 +1,11 @@
 ##The MIT License
 
-
-CDVCalendar  
-
-  Created by Randy McMillan on 1/12/13.  
-  Copyright __MyCompanyName__ 2013. All rights reserved.
+//  Based on https://github.com/felixactv8/Phonegap-Calendar-Plugin-ios
+//  Author: Felix Montanez
+//
+//  CDVCalendar
+//  CDVCalendar Template Created Jan 7 2013
+//  Copyright 2013 @RandyMcMillan
 
 
 

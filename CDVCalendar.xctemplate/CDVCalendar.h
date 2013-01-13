@@ -16,17 +16,14 @@
  *   specific language governing permissions and limitations
  *   under the License.
  */
+
+//  Based on https://github.com/felixactv8/Phonegap-Calendar-Plugin-ios
+//  Author: Felix Montanez
 //
 //  CDVCalendar
 //  CDVCalendar Template Created Jan 7 2013
 //  Copyright 2013 @RandyMcMillan
 
-//
-//  calendarPlugin.h
-//  Author: Felix Montanez
-//  Date: 01-17-2011
-//  Notes:
-//
 
 #import <Foundation/Foundation.h>
 #import <Cordova/CDVPlugin.h>
