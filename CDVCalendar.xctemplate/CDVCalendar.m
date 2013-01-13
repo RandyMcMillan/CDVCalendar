@@ -294,7 +294,7 @@
 	if (saved) {
 	
         //Option native or navigator?
-        
+        //navigator seems a little faster test more
         /*
         
         UIAlertView *alert = [[UIAlertView alloc]	initWithTitle		:title
@@ -309,9 +309,9 @@
         
         NSLog(@"kCDVCalendarSAVED = %@", kCDVCalendarSAVED);
         CDVViewController *mvcCDVCalendar = (CDVViewController *)[super viewController];
-        NSLog(@"mvcCDVCalendar = %@", mvcCDVCalendar);
-        NSLog(@"mvcCDVCalendar.view = %@", mvcCDVCalendar.view);
-        NSLog(@"mvcCDVCalendar.webView = %@", mvcCDVCalendar.webView);
+        //NSLog(@"mvcCDVCalendar = %@", mvcCDVCalendar);
+        //NSLog(@"mvcCDVCalendar.view = %@", mvcCDVCalendar.view);
+        //NSLog(@"mvcCDVCalendar.webView = %@", mvcCDVCalendar.webView);
         //    mvcCDVCalendar.webView.alpha = 0.5;
         NSString *jsString = kCDVCalendarSAVED;
         [mvcCDVCalendar.webView stringByEvaluatingJavaScriptFromString:jsString];

@@ -31,6 +31,32 @@
 NSString *const kCDVCalendarINIT = @"console.log('kCDVCalendarINIT = CDVCalendar Cordova Plugin is initialized.')";
 
 NSString *const kCDVCalendarALERT = @"navigator.notification.alert('kCDVCalendarALERT = Cordova  CDVCalendar Plugin is working!')";
-NSString *const kCDVCalendarSAVED = @"navigator.notification.alert('kCDVCalendarSAVED = Event Saved!')";
+
+
+/*
+ 
+REF: http://docs.phonegap.com/en/2.3.0rc2/cordova_notification_notification.md.html#Notification 
+ 
+ Quick Example
+ 
+ // Android / BlackBerry WebWorks (OS 5.0 and higher) / iPhone / Tizen
+ //
+ function alertDismissed() {
+ // do something
+ }
+ 
+ navigator.notification.alert(
+ 'You are the winner!',  // message
+ alertDismissed,         // callback
+ 'Game Over',            // title
+ 'Done'                  // buttonName
+ );
+ 
+ );
+ 
+ 
+ */
+
+NSString *const kCDVCalendarSAVED = @"navigator.notification.alert('message',alertDismissed,'Event Saved','Dismiss,Done');";
 
 @end
