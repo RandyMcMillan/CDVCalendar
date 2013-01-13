@@ -82,7 +82,7 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
 
 - (void)init:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
 {
-	NSLog(@"The CDVCalendar init function was called!");
+	NSLog(@">>>-----> The CDVCalendar init function was called!");
     [self initEventStoreWithCalendarCapabilities];
 
 	NSString *callbackId = [arguments pop];
@@ -135,7 +135,7 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
 
     
 	NSPredicate *matches = [NSPredicate predicateWithFormat:predicateString];
-    NSLog(@"___________ matches = %@",matches);
+    NSLog(@">>>-----> matches = %@",matches);
     [predicateString release];
 
     NSArray *matchingEvents = [[self.eventStore eventsMatchingPredicate:[eventStore predicateForEventsWithStartDate:startDate endDate:endDate calendars:nil]] filteredArrayUsingPredicate:matches];
@@ -148,7 +148,7 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
 
     //NSArray *matchingEvents = [eventsArray filteredArrayUsingPredicate:matches];
 
-    NSLog(@"_____________ return matchingEvents");
+    NSLog(@">>>-----> return matchingEvents CDVCalendar.m LINE: 151");
 	return matchingEvents;
 }
 
@@ -260,7 +260,7 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
     
     if (matchingEvents.count == 0) {
         
-        NSLog(@"matchingEvents.count = %i", matchingEvents.count);
+        NSLog(@">>>-----> matchingEvents.count = %i", matchingEvents.count);
         
     }
 
@@ -287,8 +287,13 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
             
         }
         else {
+            
+        
+            
             CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
             [self writeJavascript:[pluginResult toSuccessCallbackString:callbackId]];
+        
+        
         }
     }
     else {
@@ -303,7 +308,7 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
     
     if (matchingEvents.count > 1) {
         
-        NSLog(@"matchingEvents.count = %i", matchingEvents.count);
+        NSLog(@">>>-----> matchingEvents.count = %i", matchingEvents.count);
         
     }
 
@@ -315,8 +320,6 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
 -(void)deleteEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options {
     
 
-    // Import arguments
-  	// get the callback id
 	NSString *callbackId = [arguments pop];
     
 	NSLog(@"callbackId = '%@'", callbackId);
@@ -343,16 +346,16 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
     NSDate *myEndDate = [df dateFromString:endDate];
     
     NSArray *matchingEvents = [self findEKEventsWithTitle:title location:location message:message startDate:myStartDate endDate:myEndDate];
-    
+
     if (matchingEvents.count == 0) {
     
-        NSLog(@"matchingEvents.count = %i", matchingEvents.count);
+        NSLog(@">>>-----> matchingEvents.count = %i", matchingEvents.count);
     
     }
+
 
     if (matchingEvents.count == 1) {
         
-        NSLog(@"matchingEvents.count = %i", matchingEvents.count); // Definitive single match - delete it!
         NSError *error = NULL;
         [self.eventStore removeEvent:[matchingEvents lastObject] span:EKSpanThisEvent error:&error];
         // Check for error codes and return result
@@ -366,10 +369,13 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
             CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
             [self writeJavascript:[pluginResult toSuccessCallbackString:callbackId]];
         }
+        
     }
     
     if (matchingEvents.count > 1) {
-        NSLog(@"NOT! Definitive match - deleting lastObject! matchingEvents.count = %i", matchingEvents.count); // NOT! Definitive match - deleting lastObject!
+        
+        NSLog(@">>>-----> NOT! Definitive match - deleting lastObject! matchingEvents.count = %i", matchingEvents.count);
+        
         NSError *error = NULL;
         [self.eventStore removeEvent:[matchingEvents lastObject] span:EKSpanThisEvent error:&error];
         // Check for error codes and return result
@@ -386,7 +392,6 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
 
     
     }
-
     
 }
 
