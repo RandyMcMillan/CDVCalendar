@@ -76,9 +76,19 @@
  
  
  
- CDVCalendar.prototype.createEvent = function(success, fail, title,location,notes,startDate,endDate) {
+ CDVCalendar.prototype.createEvent = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
  
- cordovaRef.exec(success, fail, "CDVCalendar", "createEvent", [title,location,notes,startDate,endDate]);
+ if (typeof errorCallback != "function")  {
+ console.log("calendarPlugin.createEvent failure: errorCallback parameter must be a function");
+ return
+ }
+ 
+ if (typeof successCallback != "function") {
+ console.log("calendarPlugin.createEvent failure: successCallback parameter must be a function");
+ return
+ }
+ 
+ cordovaRef.exec(successCallback, errorCallback, "CDVCalendar", "createEvent", [title,location,notes,startDate,endDate]);
  
  }
  
@@ -147,19 +157,3 @@
  
  
  })();
-
-
-/*
- var CDVCalendar = {
- 
- callNativeFunction: function (success, fail, resultType) {
- return cordova.exec(success, fail, "CDVCalendar", "nativeFunction", [resultType]);
- }
- }
- */
-
-
-
-
-
-
