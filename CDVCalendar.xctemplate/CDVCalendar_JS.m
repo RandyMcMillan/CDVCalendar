@@ -57,6 +57,11 @@ REF: http://docs.phonegap.com/en/2.3.0rc2/cordova_notification_notification.md.h
  DONT PUT THE FUNCTION NAME IN QUOTES!
  */
 
-NSString *const kCDVCalendarSAVED = @"navigator.notification.alert('message',alertDismissed,'Event Saved','Done');";
+NSString *const kCDVCalendarSAVED = @"navigator.notification.alert('message',alertDismissed,'Event Saved','OK');";
+
+
+
+//trigger a docWrite with alert?
+NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',docWrite,'Event Saved','OK');";
 
 @end
