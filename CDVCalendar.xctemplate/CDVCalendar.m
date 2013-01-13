@@ -365,7 +365,7 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
     }
     
     if (matchingEvents.count > 1) {
-        NSLog(@"matchingEvents.count = %i", matchingEvents.count); // NOT! Definitive match - deleting lastObject!
+        NSLog(@"NOT! Definitive match - deleting lastObject! matchingEvents.count = %i", matchingEvents.count); // NOT! Definitive match - deleting lastObject!
         NSError *error = NULL;
         [self.eventStore removeEvent:[matchingEvents lastObject] span:EKSpanThisEvent error:&error];
         // Check for error codes and return result
