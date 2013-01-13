@@ -110,7 +110,7 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
 	}
 }
 
-#pragma mark Initialisation functions
+#pragma mark Initialization functions
 
 - (CDVPlugin *)initWithWebView:(UIWebView *)theWebView
 {
@@ -153,26 +153,31 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
 				endDate					:(NSDate *)endDate
 {
 	// Build up a predicateString - this means we only query a parameter if we actually had a value in it
-	NSMutableString *predicateString;
+	NSMutableString *predicateString = [[NSMutableString alloc]init];
 
 	[predicateString appendString:@""];
-
+/*
 	if (title.length > 0) {
 		[predicateString appendString:[NSString stringWithFormat:@"title LIKE %@", title]];
 	}
 
 	if (location.length > 0) {
-		[predicateString appendString:[NSString stringWithFormat:@"AND location LIKE %@", location]];
+		[predicateString appendString:[NSString stringWithFormat:@" AND location LIKE %@", location]];
 	}
 
 	if (message.length > 0) {
-		[predicateString appendString:[NSString stringWithFormat:@"AND message LIKE %@", message]];
+		[predicateString appendString:[NSString stringWithFormat:@" AND message LIKE %@", message]];
 	}
+*/
+    
+	//NSPredicate *matches = [NSPredicate predicateWithFormat:predicateString];
+    [predicateString release];
 
-	NSPredicate *matches = [NSPredicate predicateWithFormat:predicateString];
+//NSArray *matchingEvents = [[self.eventStore eventsMatchingPredicate:[eventStore predicateForEventsWithStartDate:nil endDate:nil calendars:nil]] filteredArrayUsingPredicate:matches];
 
-	NSArray *matchingEvents = [[self.eventStore eventsMatchingPredicate:[eventStore predicateForEventsWithStartDate:startDate endDate:endDate calendars:nil]] filteredArrayUsingPredicate:matches];
+    NSArray *matchingEvents = [self.eventStore eventsMatchingPredicate:[eventStore predicateForEventsWithStartDate:startDate endDate:endDate calendars:nil]];
 
+    
 	return matchingEvents;
 }
 
@@ -265,8 +270,8 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
 	NSString *location = [arguments objectAtIndex:1];
 	NSLog(@"location = '%@'", location);
 
-	NSString *notes = [arguments objectAtIndex:2];
-	NSLog(@"notes = '%@'", notes);
+	NSString *message = [arguments objectAtIndex:2];
+	NSLog(@"notes = '%@'", message);
 
 	NSString *startDate = [arguments objectAtIndex:3];
 	NSLog(@"startDate = '%@'", startDate);
@@ -283,7 +288,7 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
 
 	myEvent.title		= title;
 	myEvent.location	= location;
-	myEvent.notes		= notes;
+	myEvent.notes		= message;
 	myEvent.startDate	= myStartDate;
 	myEvent.endDate		= myEndDate;
 	myEvent.calendar	= self.eventStore.defaultCalendarForNewEvents;
@@ -317,154 +322,163 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
 	}
 }
 
-- (void)deleteEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
-{
-	// get the callback id
+-(void)deleteEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options {
+    // Import arguments
+  	// get the callback id
 	NSString *callbackId = [arguments pop];
-
+    
 	NSLog(@"callbackId = '%@'", callbackId);
-
+    
 	NSString *title = [arguments objectAtIndex:0];
 	NSLog(@"title = '%@'", title);
-
+    
 	NSString *location = [arguments objectAtIndex:1];
 	NSLog(@"location = '%@'", location);
-
-	NSString *notes = [arguments objectAtIndex:2];
-	NSLog(@"notes = '%@'", notes);
-
+    
+	NSString *message = [arguments objectAtIndex:2];
+	NSLog(@"notes = '%@'", message);
+    
 	NSString *startDate = [arguments objectAtIndex:3];
 	NSLog(@"startDate = '%@'", startDate);
-
+    
 	NSString *endDate = [arguments objectAtIndex:4];
 	NSLog(@"endDate = '%@'", endDate);
 
-	NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
-	[df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-
-	NSDate	*myStartDate	= [df dateFromString:startDate];
-	NSDate	*myEndDate		= [df dateFromString:endDate];
-
-	NSArray *matchingEvents = [self findEKEventsWithTitle:title location:location message:notes startDate:myStartDate endDate:myEndDate];
-
-	if (matchingEvents.count == 1) {
-		// Definitive single match - delete it!
-		NSError *error = NULL;
-		[self.eventStore removeEvent:[matchingEvents lastObject] span:EKSpanThisEvent error:&error];
-
-		// Check for error codes and return result
-		if (error) {
-			CDVPluginResult *pluginResult = [CDVPluginResult	resultWithStatus:CDVCommandStatus_ERROR
-																messageAsString :error.userInfo.description];
-			[self writeJavascript:[pluginResult toErrorCallbackString:callbackId]];
-		} else {
-			CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-			[self writeJavascript:[pluginResult toSuccessCallbackString:callbackId]];
-		}
-	}
+    
+    NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
+    [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *myStartDate = [df dateFromString:startDate];
+    NSDate *myEndDate = [df dateFromString:endDate];
+    
+    NSArray *matchingEvents = [self findEKEventsWithTitle:title location:location message:message startDate:myStartDate endDate:myEndDate];
+    
+    
+    if (matchingEvents.count == 1) {
+        // Definitive single match - delete it!
+        NSError *error = NULL;
+        [self.eventStore removeEvent:[matchingEvents lastObject] span:EKSpanThisEvent error:&error];
+        // Check for error codes and return result
+        if (error) {
+            CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
+                                                               messageAsString:error.userInfo.description];
+            [self writeJavascript:[pluginResult toErrorCallbackString:callbackId]];
+            
+        }
+        else {
+            CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            [self writeJavascript:[pluginResult toSuccessCallbackString:callbackId]];
+        }
+    }
+    
 }
 
-- (void)findEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
-{
-	// get the callback id
+-(void)findEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options {
+   	// get the callback id
 	NSString *callbackId = [arguments pop];
-
+    
 	NSLog(@"callbackId = '%@'", callbackId);
-
+    
 	NSString *title = [arguments objectAtIndex:0];
 	NSLog(@"title = '%@'", title);
-
+    
 	NSString *location = [arguments objectAtIndex:1];
 	NSLog(@"location = '%@'", location);
-
-	NSString *notes = [arguments objectAtIndex:2];
-	NSLog(@"notes = '%@'", notes);
-
+    
+	NSString *message = [arguments objectAtIndex:2];
+	NSLog(@"notes = '%@'", message);
+    
 	NSString *startDate = [arguments objectAtIndex:3];
 	NSLog(@"startDate = '%@'", startDate);
-
+    
 	NSString *endDate = [arguments objectAtIndex:4];
 	NSLog(@"endDate = '%@'", endDate);
 
-	NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
-	[df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-	NSDate	*myStartDate	= [df dateFromString:startDate];
-	NSDate	*myEndDate		= [df dateFromString:endDate];
-
-	NSArray *matchingEvents = [self findEKEventsWithTitle:title location:location message:notes startDate:myStartDate endDate:myEndDate];
-
-	if (matchingEvents.count > 0) {
-		// Return the results we got
-		CDVPluginResult *result = [CDVPluginResult
-			resultWithStatus:CDVCommandStatus_OK
-			messageAsArray	:matchingEvents
-			];
-		[self writeJavascript:[result toSuccessCallbackString:callbackId]];
-	} else {
-		CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT];
-		[self writeJavascript:[result toErrorCallbackString:callbackId]];
-	}
+    
+    NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
+    [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *myStartDate = [df dateFromString:startDate];
+    NSDate *myEndDate = [df dateFromString:endDate];
+    
+    NSArray *matchingEvents = [self findEKEventsWithTitle:title location:location message:message startDate:myStartDate endDate:myEndDate];
+    
+    if (matchingEvents.count > 0) {
+        // Return the results we got
+        CDVPluginResult* result = [CDVPluginResult
+                                   resultWithStatus: CDVCommandStatus_OK
+                                   messageAsArray: matchingEvents
+                                   ];
+        [self writeJavascript:[result toSuccessCallbackString:callbackId]];
+    }
+    else {
+        CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT];
+        [self writeJavascript:[result toErrorCallbackString:callbackId]];
+    }
+    
 }
 
-- (void)modifyEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
-{
-	// get the callback id
+
+-(void)modifyEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options {
+   	// get the callback id
 	NSString *callbackId = [arguments pop];
-
+    
 	NSLog(@"callbackId = '%@'", callbackId);
-
+    
 	NSString *title = [arguments objectAtIndex:0];
 	NSLog(@"title = '%@'", title);
-
+    
 	NSString *location = [arguments objectAtIndex:1];
 	NSLog(@"location = '%@'", location);
-
-	NSString *notes = [arguments objectAtIndex:2];
-	NSLog(@"notes = '%@'", notes);
-
+    
+	NSString *message = [arguments objectAtIndex:2];
+	NSLog(@"notes = '%@'", message);
+    
 	NSString *startDate = [arguments objectAtIndex:3];
 	NSLog(@"startDate = '%@'", startDate);
-
+    
 	NSString *endDate = [arguments objectAtIndex:4];
 	NSLog(@"endDate = '%@'", endDate);
-
-	// Make NSDates from our strings
-	NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
-	[df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-	NSDate	*myStartDate	= [df dateFromString:startDate];
-	NSDate	*myEndDate		= [df dateFromString:endDate];
-
-	// Find matches
-	NSArray *matchingEvents = [self findEKEventsWithTitle:title location:location message:notes startDate:myStartDate endDate:myEndDate];
-
-	if (matchingEvents.count == 1) {
-		// Presume we have to have an exact match to modify it!
-		// Need to load this event from an EKEventStore so we can edit it
-		EKEvent *theEvent = [self.eventStore eventWithIdentifier:((EKEvent *)[matchingEvents lastObject]).eventIdentifier];
-		theEvent.title		= title;
-		theEvent.location	= location;
-		theEvent.notes		= notes;
-		theEvent.startDate	= myStartDate;
-		theEvent.endDate	= myEndDate;
-
-		// Now save the new details back to the store
-		NSError *error = nil;
-		[self.eventStore saveEvent:theEvent span:EKSpanThisEvent error:&error];
-
-		// Check error code + return result
-		if (error) {
-			CDVPluginResult *pluginResult = [CDVPluginResult	resultWithStatus:CDVCommandStatus_ERROR
-																messageAsString :error.userInfo.description];
-			[self writeJavascript:[pluginResult toErrorCallbackString:callbackId]];
-		} else {
-			CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-			[self writeJavascript:[pluginResult toSuccessCallbackString:callbackId]];
-		}
-	} else {
-		// Otherwise return a no result error
-		CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT];
-		[self writeJavascript:[pluginResult toErrorCallbackString:callbackId]];
-	}
+    
+    // Make NSDates from our strings
+    NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
+    [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *myStartDate = [df dateFromString:startDate];
+    NSDate *myEndDate = [df dateFromString:endDate];
+    
+    // Find matches
+    NSArray *matchingEvents = [self findEKEventsWithTitle:title location:location message:message startDate:myStartDate endDate:myEndDate];
+    
+    if (matchingEvents.count == 1) {
+        // Presume we have to have an exact match to modify it!
+        // Need to load this event from an EKEventStore so we can edit it
+        EKEvent *theEvent = [self.eventStore eventWithIdentifier:((EKEvent*)[matchingEvents lastObject]).eventIdentifier];
+        theEvent.title = title;
+        theEvent.location = location;
+        theEvent.notes = message;
+        theEvent.startDate = myStartDate;
+        theEvent.endDate = myEndDate;
+        
+        // Now save the new details back to the store
+        NSError *error = nil;
+        [self.eventStore saveEvent:theEvent span:EKSpanThisEvent error:&error];
+        
+        // Check error code + return result
+        if (error) {
+            CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
+                                                               messageAsString:error.userInfo.description];
+            [self writeJavascript:[pluginResult toErrorCallbackString:callbackId]];
+            
+        }
+        else {
+            CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            [self writeJavascript:[pluginResult toSuccessCallbackString:callbackId]];
+        }
+    }
+    else {
+        // Otherwise return a no result error
+        CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT];
+        [self writeJavascript:[pluginResult toErrorCallbackString:callbackId]];
+    }
+    
 }
 
 @end
