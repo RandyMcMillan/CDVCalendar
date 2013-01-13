@@ -14,6 +14,7 @@
             <!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
             <script type="text/javascript" charset="utf-8" src="cordova-2.3.0.js"></script>
             <script type="text/javascript" charset="utf-8" src="CDVCalendar.js"></script>
+            <script type="text/javascript" charset="utf-8" src="FormatDateTime.js"></script>
             
             <script type="text/javascript">
                 
@@ -79,41 +80,37 @@
                 
                 
                 //createEvent
-                function createEvt (title,location,notes){
+                function createEvt (title,location,notes,startDate,endDate){
                     
                     
-                    window.plugins.CDVCalendar.createEvent(createEventResultHandler,createEventErrorHandler,title,location,notes);
+                    window.plugins.CDVCalendar.createEvent(createEventResultHandler,createEventErrorHandler,title,location,notes,startDate,endDate);
                     
                     
                 }
                 
-                
+                // createEventResultHandler defined CDVCalendar.createEvent(...)
                 function createEventResultHandler (result) {
-                    
                     console.log('createEventResultHandler');
-                    console.log(result);
-                    
                 }
                 
+                // createEventResultHandler defined CDVCalendar.createEvent(...)
                 function createEventErrorHandler (error) {
-                    
                     console.log('createEventErrorHandler');
-                    console.log(error);
-                    
                 }
                 
+                // calAlertDismissed dialog dismissed
+                function calAlertDismissed() {
+                    console.log('calAlertDismissed called!');
+                }
                 
                 
                 //buttons
                 function buttonOne (){
-                    
                     nativeFunction('success');
-                    
                 }
                 
                 
                 function buttonTwo (){
-                    
                     
                     console.log("creating event");
                     var title= "My Sample Appt";
@@ -128,7 +125,7 @@
                     console.log(startDate);
                     console.log(endDate);
                     
-                    window.plugins.CDVCalendar.createEventOLD(title,location,notes,startDate,endDate,createEventOldResultHandler,createEventOldErrorHandler);
+                    window.plugins.CDVCalendar.createEvent(createEventResultHandler,createEventErrorHandler,title,location,notes,startDate,endDate);
                     
                     
                     
@@ -136,27 +133,13 @@
                 
                 
                 function createEventOldResultHandler () {
-                    
-                    
                     console.log('createEventOldResultHandler function called!');
-                    
-                    
                 }
                 
                 
                 function createEventOldErrorHandler () {
-                    
-                    
                     console.log('createEventOldErrorHandler function called!');
-                    
-                    
                 }
-                
-                
-                
-                
-                
-                
                 
                 </script>
             </head>
@@ -167,11 +150,12 @@
         <button onclick="buttonTwo();">buttonTwo!</button>
         <button onclick="init('success');">init!</button>
         <button onclick="nativeFunction('success');">nativeFunction!</button>
-        <button onclick="createEvt('Title','Location','Notes');">createEvt!</button>
-        
+        <button onclick="createEvt('Title','Location','Notes...','1970-01-01 00:00:00','1970-01-01 01:01:01');">createEvt!</button>
         
     </body>
 </html>
+
+
 
 
 
