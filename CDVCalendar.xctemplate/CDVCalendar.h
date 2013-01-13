@@ -32,15 +32,10 @@
 
 @interface CDVCalendar : CDVPlugin {}
 
-
 extern NSString *const kCDVCalendarINIT;
-
 extern NSString *const kCDVCalendarALERT;
-
 extern NSString *const kCDVCalendarSAVED;
-
 extern NSString *const kCDVCalendarDocWrite;
-
 
 @property (nonatomic, retain) EKEventStore *eventStore;
 
@@ -53,16 +48,9 @@ extern NSString *const kCDVCalendarDocWrite;
 				endDate					:(NSDate *)endDate;
 
 - (void)init:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options;
-
-- (void)nativeFunction:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options;
-// Calendar Instance methods
-- (void)createEventOLD:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options;
 - (void)createEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options;
-
 - (void)modifyEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options;
-
 - (void)findEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options;
-
 - (void)deleteEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options;
 
 @end
