@@ -27,7 +27,10 @@
  var cordovaRef = window.PhoneGap || window.Cordova || window.cordova; // old to new fallbacks
  
  function CDVCalendar(){}
+
  
+ 
+ //init
  CDVCalendar.prototype.init = function(success, fail, resultType) {
  
  cordovaRef.exec(success, fail, "CDVCalendar", "init", [resultType]);
@@ -36,93 +39,64 @@
  
  
  
- 
+ //nativeFunction
  CDVCalendar.prototype.nativeFunction = function(success, fail, resultType) {
  
  cordovaRef.exec(success, fail, "CDVCalendar", "nativeFunction", [resultType]);
  
  }
  
- /*
-  CDVCalendar.prototype.nativePluginResultHandler = function(result) {
-  
-  console.log(result);
-  
-  }
-  
-  
-  CDVCalendar.prototype.nativePluginErrorHandler = function(error) {
-  
-  console.log(error);
-  
-  }
-  */
  
  
- CDVCalendar.prototype.createEventOLD = function(title,location,notes,startDate,endDate,successCallback, errorCallback) {
- if (typeof errorCallback != "function")  {
- console.log("calendarPlugin.createEvent failure: errorCallback parameter must be a function");
- return
- }
- 
- if (typeof successCallback != "function") {
- console.log("calendarPlugin.createEvent failure: successCallback parameter must be a function");
- return
- }
- cordova.exec(successCallback,errorCallback,"CDVCalendar","createEventOLD", [title,location,notes,startDate,endDate,successCallback,errorCallback]);
- };
- 
- 
- 
- 
- 
+ //createEvent
  CDVCalendar.prototype.createEvent = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
  
  if (typeof errorCallback != "function")  {
  console.log("calendarPlugin.createEvent failure: errorCallback parameter must be a function");
  return
  }
- 
  if (typeof successCallback != "function") {
  console.log("calendarPlugin.createEvent failure: successCallback parameter must be a function");
  return
  }
- 
  cordovaRef.exec(successCallback, errorCallback, "CDVCalendar", "createEvent", [title,location,notes,startDate,endDate]);
- 
  }
  
  
  
  
- 
- CDVCalendar.prototype.deleteEvent = function(title,location,notes,startDate,endDate,successCallback, errorCallback) {
+ //deleteEvent
+ CDVCalendar.prototype.deleteEvent = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
  if (typeof errorCallback != "function")  {
  console.log("calendarPlugin.deleteEvent failure: errorCallback parameter must be a function");
  return
  }
- 
  if (typeof successCallback != "function") {
  console.log("calendarPlugin.deleteEvent failure: successCallback parameter must be a function");
  return
  }
- cordova.exec(successCallback,errorCallback,"CDVCalendar","deleteEvent", [title,location,notes,startDate,endDate]);
+ cordovaRef.exec(successCallback,errorCallback,"CDVCalendar","deleteEvent", [title,location,notes,startDate,endDate]);
  }
  
- CDVCalendar.prototype.findEvent = function(title,location,notes,startDate,endDate,successCallback, errorCallback) {
+ 
+ 
+ //findEvent
+ CDVCalendar.prototype.findEvent = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
  if (typeof errorCallback != "function")  {
  console.log("calendarPlugin.findEvent failure: errorCallback parameter must be a function");
  return
  }
- 
  if (typeof successCallback != "function") {
  console.log("calendarPlugin.findEvent failure: successCallback parameter must be a function");
  return
  }
- cordova.exec(successCallback,errorCallback,"CDVCalendar","findEvent", [title,location,notes,startDate,endDate]);
+ cordovaRef.exec(successCallback,errorCallback,"CDVCalendar","findEvent", [title,location,notes,startDate,endDate]);
  }
  
- CDVCalendar.prototype.modifyEvent = function(title,location,notes,startDate,endDate,successCallback, errorCallback) {
+ 
+ 
+ //modifyEvent
+ CDVCalendar.prototype.modifyEvent = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
  if (typeof errorCallback != "function")  {
  console.log("calendarPlugin.modifyEvent failure: errorCallback parameter must be a function");
  return
@@ -132,7 +106,7 @@
  console.log("calendarPlugin.modifyEvent failure: successCallback parameter must be a function");
  return
  }
- cordova.exec(successCallback,errorCallback,"CDVCalendar","modifyEvent", [title,location,notes,startDate,endDate]);
+ cordovaRef.exec(successCallback,errorCallback,"CDVCalendar","modifyEvent", [title,location,notes,startDate,endDate]);
  }
  
  
