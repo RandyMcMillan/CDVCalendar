@@ -52,7 +52,8 @@ extern NSString *const kCDVCalendarDocWrite;
 - (void)init:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options;
 - (void)createEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options;
 - (void)modifyEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options;
-- (void)findEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options;
+- (void)findEventByArray:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options;
+- (void)findEventByID:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options;
 - (void)deleteEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options;
 - (void)deleteByID:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options;
 
