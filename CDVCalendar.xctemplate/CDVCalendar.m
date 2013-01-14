@@ -127,28 +127,16 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
 	}
     
     /*
-     ///Filtering isn't liking this
-        if (message.length > 0) {
+	if (message.length > 0) {
 		[predicateString appendString:[NSString stringWithFormat:@" AND message LIKE '%@'", message]];
-        }
+	}
     */
-
-    
-	NSPredicate *matches = [NSPredicate predicateWithFormat:predicateString];
-    NSLog(@">>>-----> matches = %@",matches);
+	
+    NSPredicate *matches = [NSPredicate predicateWithFormat:predicateString];
     [predicateString release];
 
     NSArray *matchingEvents = [[self.eventStore eventsMatchingPredicate:[eventStore predicateForEventsWithStartDate:startDate endDate:endDate calendars:nil]] filteredArrayUsingPredicate:matches];
 
-    
-    //NSArray *eventsArray =
-    //[self.eventStore eventsMatchingPredicate:[eventStore predicateForEventsWithStartDate:startDate endDate:endDate calendars:nil]];
-    
-    //NSLog(@"_____________ eventsArray objectAtIndex:0 = %@", [eventsArray objectAtIndex:0]);
-
-    //NSArray *matchingEvents = [eventsArray filteredArrayUsingPredicate:matches];
-
-    NSLog(@">>>-----> return matchingEvents CDVCalendar.m LINE: 151");
 	return matchingEvents;
 }
 
@@ -399,25 +387,12 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
 -(void)findEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options {
     
 
-   	// get the callback id
-	NSString *callbackId = [arguments pop];
-    
-	NSLog(@"callbackId = '%@'", callbackId);
-    
-	NSString *title = [arguments objectAtIndex:0];
-	NSLog(@"title = '%@'", title);
-    
-	NSString *location = [arguments objectAtIndex:1];
-	NSLog(@"location = '%@'", location);
-    
-	NSString *message = [arguments objectAtIndex:2];
-	NSLog(@"notes = '%@'", message);
-    
-	NSString *startDate = [arguments objectAtIndex:3];
-	NSLog(@"startDate = '%@'", startDate);
-    
-	NSString *endDate = [arguments objectAtIndex:4];
-	NSLog(@"endDate = '%@'", endDate);
+    NSString *callbackId = [arguments pop];
+    NSString* title      = [arguments objectAtIndex:0];
+    NSString* location   = [arguments objectAtIndex:1];
+    NSString* message    = [arguments objectAtIndex:2];
+    NSString *startDate  = [arguments objectAtIndex:3];
+    NSString *endDate    = [arguments objectAtIndex:4];
     
     NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
     [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -425,42 +400,22 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
     NSDate *myEndDate = [df dateFromString:endDate];
     
     NSArray *matchingEvents = [self findEKEventsWithTitle:title location:location message:message startDate:myStartDate endDate:myEndDate];
-
-    
-    int i;
-    for (i = 0; i < matchingEvents.count; i++)
-    {
-
-        if (matchingEvents.count > 0 ) {
-            
-        EKEvent *returnEvent = [matchingEvents objectAtIndex:i];
+    self.returnEvent = [matchingEvents objectAtIndex:0];
+    if (matchingEvents.count > 0) {
+        // Return the results we got
         CDVPluginResult* result = [CDVPluginResult
                                    resultWithStatus: CDVCommandStatus_OK
-                                   messageAsString: returnEvent.eventIdentifier
+                                   messageAsString: self.returnEvent.eventIdentifier
                                    ];
         [self writeJavascript:[result toSuccessCallbackString:callbackId]];
-        
-        }
-        
-        if (matchingEvents.count == 0 ) {
-            
-        
-            
-            CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT];
-            [self writeJavascript:[result toErrorCallbackString:callbackId]];
-            
-        }
-        
-        
     }
-    
-    
-
-
+    else {
+        CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT];
+        [self writeJavascript:[result toErrorCallbackString:callbackId]];
+    }
     
  
     
-        
     
     
     

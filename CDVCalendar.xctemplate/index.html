@@ -70,7 +70,7 @@
                     console.log("create event");
                     var title= "Appt";
                     var location = "Los Angeles";
-                    var notes = "This is a sample note";
+                    var notes = "note";
                     var startDate = "2013-01-16 09:30:00";
                     var endDate =   "2013-01-16 12:30:00";
                     /*
@@ -85,6 +85,8 @@
                     
                     
                 }
+                
+                
                 
                 
                 // createEventResultHandler defined CDVCalendar.createEvent(...)
@@ -106,7 +108,7 @@
                     console.log("modify event");
                     var title= "Appt";
                     var location = "Los Angeles";
-                    var notes = "This is a sample note modified";
+                    var notes = "note";
                     var startDate = "2013-01-16 09:30:00";
                     var endDate =   "2013-01-16 12:30:00";
                     /*
@@ -141,7 +143,7 @@
                     console.log("delete event");
                     var title= "Appt";
                     var location = "Los Angeles";
-                    var notes = "This event shouldn't exist after this!";
+                    var notes = "note";
                     var startDate = "2013-01-16 09:30:00";
                     var endDate =   "2013-01-16 12:30:00";
                     /*
@@ -170,21 +172,152 @@
                 }
                 
                 
+                function buttonFour (){
+                    
+                    console.log("find event");
+                    var title= "Appt";
+                    var location = "Los Angeles";
+                    var notes = "note";
+                    var startDate = "2013-01-16 09:30:00";
+                    var endDate =   "2013-01-16 12:30:00";
+                    /*
+                     console.log(title);
+                     console.log(location);
+                     console.log(notes);
+                     console.log(startDate);
+                     console.log(endDate);
+                     */
+                    window.plugins.CDVCalendar.findEvent(findEventResultHandler,findEventErrorHandler,title,location,notes,startDate,endDate);
+                    
+                    
+                    
+                }
+                
+                
+                //buttons
+                function buttonFive (){
+                    
+                    console.log("create event");
+                    var title= "Appt 2";
+                    var location = "Los Alamos";
+                    var notes = "note";
+                    var startDate = "2015-01-16 09:30:00";
+                    var endDate =   "2015-01-16 12:30:00";
+                    /*
+                     console.log(title);
+                     console.log(location);
+                     console.log(notes);
+                     console.log(startDate);
+                     console.log(endDate);
+                     */
+                    window.plugins.CDVCalendar.createEvent(createEventResultHandler,createEventErrorHandler,title,location,notes,startDate,endDate);
+                    
+                    
+                    
+                }
+                
+                function buttonSix (){
+                    
+                    console.log("create event");
+                    var title= "Appt 2";
+                    var location = "Los Alamos";
+                    var notes = "note";
+                    var startDate = "2015-01-16 09:30:00";
+                    var endDate =   "2015-01-16 12:30:00";
+                    /*
+                     console.log(title);
+                     console.log(location);
+                     console.log(notes);
+                     console.log(startDate);
+                     console.log(endDate);
+                     */
+                    window.plugins.CDVCalendar.findEvent(findEventResultHandler,findEventErrorHandler,title,location,notes,startDate,endDate);
+                    
+                    
+                    
+                }
+                
+                function buttonSeven (){
+                    
+                    console.log("create event");
+                    var title= "Appt 2";
+                    var location = "Los Alamos";
+                    var notes = "note";
+                    var startDate = "2015-01-16 09:30:00";
+                    var endDate =   "2015-01-16 12:30:00";
+                    /*
+                     console.log(title);
+                     console.log(location);
+                     console.log(notes);
+                     console.log(startDate);
+                     console.log(endDate);
+                     */
+                    window.plugins.CDVCalendar.deleteEvent(deleteEventResultHandler,deleteEventErrorHandler,title,location,notes,startDate,endDate);
+                    
+                    
+                    
+                }
+                
+                
+                
+                // findEventResultHandler defined CDVCalendar.findEvent(...)
+                function findEventResultHandler (result) {
+                    console.log(result);
+                    console.log('findEventResultHandler');
+                }
+                
+                // findEventErrorHandler defined CDVCalendar.findEvent(...)
+                function findEventErrorHandler (error) {
+                    console.log(error);
+                    console.log('findEventErrorHandler');
+                }
+                
                 
                 
                 </script>
+            
+            <style type="text/css"> button { color:gray; float: none; width: 80%; height: 30px;margin-left: 10%;  } a{color: aqua} </style>
+            
+            
             </head>
     <body onload="onBodyLoad()">
+        
         <h1>Hey, it's Cordova CDVCalendar Plugin!</h1>
         
-        <button onclick="init('success');">init!</button>
-        <button onclick="buttonOne();">Create!</button>
-        <button onclick="buttonTwo();">Modify!</button>
-        <button onclick="buttonThree();">Delete!</button>
+        <button onclick="init('success');">init!</button><br><div id='init' class="button">init
+	        
+        </div><hr>
+        
+        <button onclick="buttonOne();">Create 1!</button><br><div id='Create 1'  class="button">Create 1
+	        
+        </div></div><hr>
+        
+        <button onclick="buttonTwo();">Modify 1!</button><br><div id='Modify 1'  class="button">Modify 1
+        	
+        </div><hr>
+        
+        <button onclick="buttonThree();">Delete 1!</button><br><div id="Delete 1"  class="button">Delete 1
+        	
+        </div><hr>
+        
+        <button onclick="buttonFour();">Find 1!</button><br><div id='Find 1'  class="button">Find 1
+	        
+        </div><hr>
+        
+        <button onclick="buttonFive();">Create 2!</button><br><div id='Create 2'  class="button">Create 2
+	        `
+        </div><hr>
+        
+        <button onclick="buttonSix();">Find 2!</button><br><div id='Find 2'  class="button">Find 2
+	        
+        </div><hr>
+        
+        <button onclick="buttonSeven();">Delete 2!</button><br><div id='Delete 2' class="button">Delete 2
+            
+        </div><hr>
         
     </body>
 </html>
-
 
 
 

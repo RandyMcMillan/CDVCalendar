@@ -38,6 +38,7 @@ extern NSString *const kCDVCalendarSAVED;
 extern NSString *const kCDVCalendarDocWrite;
 
 @property (nonatomic, retain) EKEventStore *eventStore;
+@property (nonatomic,readwrite,retain) EKEvent *returnEvent;
 
 - (void)initEventStoreWithCalendarCapabilities;
 
