@@ -417,7 +417,6 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
     
 	NSString *endDate = [arguments objectAtIndex:4];
 	NSLog(@"endDate = '%@'", endDate);
-
     
     NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
     [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -425,22 +424,59 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
     NSDate *myEndDate = [df dateFromString:endDate];
     
     NSArray *matchingEvents = [self findEKEventsWithTitle:title location:location message:message startDate:myStartDate endDate:myEndDate];
+
     
-    if (matchingEvents.count > 0) {
+    int i;
+    for (i = 0; i < matchingEvents.count; i++)
+    {
+        EKEvent *returnEvent = [matchingEvents objectAtIndex:i];
+        NSString *returnEventString = returnEvent.eventIdentifier;
+        NSLog(@"returnEventString = %@",returnEventString);
+
+        
+       if (matchingEvents.count > 0) {
         // Return the results we got
         CDVPluginResult* result = [CDVPluginResult
                                    resultWithStatus: CDVCommandStatus_OK
-                                   messageAsArray: matchingEvents
+                                   messageAsString: returnEvent.eventIdentifier
                                    ];
-        [self writeJavascript:[result toSuccessCallbackString:callbackId]];
+             [self writeJavascript:[result toSuccessCallbackString:callbackId]];
     }
     else {
         CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT];
         [self writeJavascript:[result toErrorCallbackString:callbackId]];
     }
     
-}
+ 
+        
+        
+    }
+    
+    
+    
+    
+    
+    
 
 
 
-@end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}@end
