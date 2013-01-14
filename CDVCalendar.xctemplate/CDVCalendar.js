@@ -77,17 +77,24 @@
  }
  
  //findEvent
- CDVCalendar.prototype.findEvent = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
+ CDVCalendar.prototype.findEventByArray = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
  if (typeof errorCallback != "function")  {
- console.log("calendarPlugin.findEvent failure: errorCallback parameter must be a function");
+ console.log("calendarPlugin.findEventByArray failure: errorCallback parameter must be a function");
  return
  }
  if (typeof successCallback != "function") {
- console.log("calendarPlugin.findEvent failure: successCallback parameter must be a function");
+ console.log("calendarPlugin.findEventByArray failure: successCallback parameter must be a function");
  return
  }
- cordovaRef.exec(successCallback,errorCallback,"CDVCalendar","findEvent", [title,location,notes,startDate,endDate]);
+ cordovaRef.exec(successCallback,errorCallback,"CDVCalendar","findEventByArray", [title,location,notes,startDate,endDate]);
  }
+ 
+ 
+ //init
+ CDVCalendar.prototype.findEventByID = function(success, fail, resultType) {
+ cordovaRef.exec(success, fail, "CDVCalendar", "findEventByID", [resultType]);
+ }
+ 
  
  //findEvent
  CDVCalendar.prototype.deleteByID = function(successCallback, errorCallback, id) {

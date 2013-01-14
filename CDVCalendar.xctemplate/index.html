@@ -34,30 +34,62 @@
                     
                 }
                 
+                var eventID = new Array();
+                eventID[0] = '[0]';
                 
                 //init
                 function init (returnSuccess){
-                    
                     window.plugins.CDVCalendar.init(initResultHandler,initErrorHandler,returnSuccess);
-                    
                 }
                 
                 function initResultHandler (result) {
-                    
                     console.log('initResultHandler');
                     console.log(result);
-                    
+                    document.getElementById('report').innerHTML = result;
                 }
                 
                 function initErrorHandler (error) {
-                    
                     console.log('initErrorHandler');
                     console.log(error);
-                    
+                    document.getElementById('report').innerHTML = error;
                 }
                 
                 
                 
+                
+                //buttons
+                function createEventBtn1(){
+                    var title= "Appt";
+                    var location = "Los Angeles";
+                    var notes = "note";
+                    var startDate = "2013-01-16 09:30:00";
+                    var endDate =   "2013-01-16 12:30:00";
+                    window.plugins.CDVCalendar.createEvent(createEventResultHandler,createEventErrorHandler,title,location,notes,startDate,endDate);
+                }
+                
+                //buttons
+                function createEventBtn2(){
+                    var title= "Appt 2";
+                    var location = "Los Alamos";
+                    var notes = "note";
+                    var startDate = "2015-01-16 09:30:00";
+                    var endDate =   "2015-01-16 12:30:00";
+                    window.plugins.CDVCalendar.createEvent(createEventResultHandler,createEventErrorHandler,title,location,notes,startDate,endDate);
+                }
+                
+                // createEventResultHandler defined CDVCalendar.createEvent(...)
+                function createEventResultHandler (result) {
+                    console.log('createEventResultHandler');
+                    document.getElementById('report').innerHTML = result;
+                    console.log('eventID = '+result);
+                    eventID.push(result);
+                }
+                
+                // createEventErrorHandler defined CDVCalendar.createEvent(...)
+                function createEventErrorHandler (error) {
+                    console.log('createEventErrorHandler');
+                    document.getElementById('report').innerHTML = error;
+                }
                 
                 // calAlertDismissed dialog dismissed
                 function calAlertDismissed() {
@@ -65,246 +97,20 @@
                 }
                 
                 
-                //buttons
-                function buttonOne (){
-                    
-                    console.log("create event");
+                function findByArrayBtn (){
                     var title= "Appt";
                     var location = "Los Angeles";
                     var notes = "note";
                     var startDate = "2013-01-16 09:30:00";
                     var endDate =   "2013-01-16 12:30:00";
-                    /*
-                     console.log(title);
-                     console.log(location);
-                     console.log(notes);
-                     console.log(startDate);
-                     console.log(endDate);
-                     */
-                    window.plugins.CDVCalendar.createEvent(createEventResultHandler,createEventErrorHandler,title,location,notes,startDate,endDate);
-                    
-                    
-                    
+                    window.plugins.CDVCalendar.findEventByArray(findEventResultHandler,findEventErrorHandler,title,location,notes,startDate,endDate);
                 }
                 
-                
-                
-                
-                // createEventResultHandler defined CDVCalendar.createEvent(...)
-                function createEventResultHandler (result) {
-                    console.log(result);
-                    console.log('createEventResultHandler');
+                function findByIDBtn (eventID){
                     
+                    eventID[0] = 'findEventByID';
+                    window.plugins.CDVCalendar.findEventByID(findEventResultHandler,findEventErrorHandler,eventID);
                 }
-                
-                // createEventErrorHandler defined CDVCalendar.createEvent(...)
-                function createEventErrorHandler (error) {
-                    console.log(error);
-                    console.log('createEventErrorHandler');
-                }
-                
-                
-                
-                function buttonTwo (){
-                    
-                    console.log("modify event");
-                    var title= "Appt";
-                    var location = "Los Angeles";
-                    var notes = "note";
-                    var startDate = "2013-01-16 09:30:00";
-                    var endDate =   "2013-01-16 12:30:00";
-                    /*
-                     console.log(title);
-                     console.log(location);
-                     console.log(notes);
-                     console.log(startDate);
-                     console.log(endDate);
-                     */
-                    window.plugins.CDVCalendar.modifyEvent(modifyEventResultHandler,modifyEventErrorHandler,title,location,notes,startDate,endDate);
-                    
-                    
-                    
-                }
-                
-                // modifyEventResultHandler defined CDVCalendar.modifyEvent(...)
-                function modifyEventResultHandler (result) {
-                    console.log(result);
-                    console.log('modifyEventResultHandler');
-                }
-                
-                // modifyEventErrorHandler defined CDVCalendar.modifyEvent(...)
-                function modifyEventErrorHandler (error) {
-                    console.log(error);
-                    console.log('modifyEventErrorHandler');
-                }
-                
-                
-                
-                function buttonThree (){
-                    
-                    console.log("delete event");
-                    var title= "Appt";
-                    var location = "Los Angeles";
-                    var notes = "note";
-                    var startDate = "2013-01-16 09:30:00";
-                    var endDate =   "2013-01-16 12:30:00";
-                    /*
-                     console.log(title);
-                     console.log(location);
-                     console.log(notes);
-                     console.log(startDate);
-                     console.log(endDate);
-                     */
-                    window.plugins.CDVCalendar.deleteEvent(deleteEventResultHandler,deleteEventErrorHandler,title,location,notes,startDate,endDate);
-                    
-                    
-                    
-                }
-                
-                // modifyEventResultHandler defined CDVCalendar.deleteEvent(...)
-                function deleteEventResultHandler (result) {
-                    console.log(result);
-                    console.log('deleteEventResultHandler');
-                }
-                
-                // modifyEventResultHandler defined CDVCalendar.deleteEvent(...)
-                function deleteEventErrorHandler (error) {
-                    console.log(error);
-                    console.log('deleteEventErrorHandler');
-                }
-                
-                
-                function buttonFour (){
-                    
-                    console.log("find event");
-                    var title= "Appt";
-                    var location = "Los Angeles";
-                    var notes = "note";
-                    var startDate = "2013-01-16 09:30:00";
-                    var endDate =   "2013-01-16 12:30:00";
-                    /*
-                     console.log(title);
-                     console.log(location);
-                     console.log(notes);
-                     console.log(startDate);
-                     console.log(endDate);
-                     */
-                    window.plugins.CDVCalendar.findEvent(findEventResultHandler,findEventErrorHandler,title,location,notes,startDate,endDate);
-                    
-                    
-                    
-                }
-                
-                
-                //buttons
-                function buttonFive (){
-                    
-                    console.log("create event");
-                    var title= "Appt 2";
-                    var location = "Los Alamos";
-                    var notes = "note";
-                    var startDate = "2015-01-16 09:30:00";
-                    var endDate =   "2015-01-16 12:30:00";
-                    /*
-                     console.log(title);
-                     console.log(location);
-                     console.log(notes);
-                     console.log(startDate);
-                     console.log(endDate);
-                     */
-                    window.plugins.CDVCalendar.createEvent(createEventResultHandler,createEventErrorHandler,title,location,notes,startDate,endDate);
-                    
-                    
-                    
-                }
-                
-                function buttonSix (){
-                    
-                    console.log("create event");
-                    var title= "Appt 2";
-                    var location = "Los Alamos";
-                    var notes = "note";
-                    var startDate = "2015-01-16 09:30:00";
-                    var endDate =   "2015-01-16 12:30:00";
-                    /*
-                     console.log(title);
-                     console.log(location);
-                     console.log(notes);
-                     console.log(startDate);
-                     console.log(endDate);
-                     */
-                    window.plugins.CDVCalendar.findEvent(findEventResultHandler,findEventErrorHandler,title,location,notes,startDate,endDate);
-                    
-                    
-                    
-                }
-                
-                function buttonSeven (){
-                    
-                    console.log("create event");
-                    var title= "Appt 2";
-                    var location = "Los Alamos";
-                    var notes = "note";
-                    var startDate = "2015-01-16 09:30:00";
-                    var endDate =   "2015-01-16 12:30:00";
-                    /*
-                     console.log(title);
-                     console.log(location);
-                     console.log(notes);
-                     console.log(startDate);
-                     console.log(endDate);
-                     */
-                    window.plugins.CDVCalendar.deleteEvent(deleteEventResultHandler,deleteEventErrorHandler,title,location,notes,startDate,endDate);
-                    
-                    
-                    
-                }
-                
-                
-                var eventID = new Array();
-                eventID[0] = 'FFC13D1D-6779-455E-8D6F-AB997250DA1D:FFA25CB5-7F2E-48F8-9B38-09F87A9CFDCD';
-                
-                
-                function buttonEight (id){
-                    
-                    window.plugins.CDVCalendar.deleteByID(deleteEventByIdResultHandler,deleteEventByIdErrorHandler,id);
-                    
-                }
-                
-                
-                
-                
-                // modifyEventResultHandler defined CDVCalendar.deleteEvent(...)
-                function deleteEventByIdResultHandler (result) {
-                    console.log(result);
-                    console.log('deleteEventByIdResultHandler');
-                    
-                    if (eventID) {
-                        
-                        eventID[0] = result;
-                        console.log('eventID[0] = '+eventID[0]);
-                        
-                    }
-                    
-                    
-                    
-                }
-                
-                // modifyEventResultHandler defined CDVCalendar.deleteEvent(...)
-                function deleteEventByIdErrorHandler (error) {
-                    console.log(result);
-                    console.log('deleteEventByIdResultHandler'+result);
-                    
-                    if (eventID) {
-                        
-                        eventID[0] = result;
-                        console.log('eventID[0] = '+eventID[0]);
-                        
-                    }
-                    
-                    
-                }
-                
                 
                 
                 // findEventResultHandler defined CDVCalendar.findEvent(...)
@@ -313,44 +119,142 @@
                     console.log('findEventResultHandler result = '+result);
                     
                     if (eventID) {
-                        
                         eventID[0] = result;
                         console.log('eventID[0] = '+eventID[0]);
-                        
+                        document.getElementById('report').innerHTML = eventID[0];
                     }
-                    
-                    
+                    listIDS(eventID);
                 }
                 
                 // findEventErrorHandler defined CDVCalendar.findEvent(...)
                 function findEventErrorHandler (error) {
                     console.log(error);
                     console.log('findEventErrorHandler '+error);
-                }
-                
-                
-                
-                function helpButton(){
-	                
-	                window.open('http://www.youtube.com/watch?v=TPUHdUMc5Zo&autoplay=1', '_blank', 'location=yes');
+                    document.getElementById('report').innerHTML = error;
                     
                 }
+                
+                function modifyBtn (){
+                    var title= "Appt";
+                    var location = "Los Angeles";
+                    var notes = "modified";
+                    var startDate = "2013-01-17 09:30:00";
+                    var endDate =   "2013-01-17 12:30:00";
+                    window.plugins.CDVCalendar.modifyEvent(modifyEventResultHandler,modifyEventErrorHandler,title,location,notes,startDate,endDate);
+                }
+                
+                // modifyEventResultHandler defined CDVCalendar.modifyEvent(...)
+                function modifyEventResultHandler (result) {
+                    console.log(result);
+                    console.log('modifyEventResultHandler');
+                    document.getElementById('report').innerHTML = result;
+                    
+                }
+                // modifyEventErrorHandler defined CDVCalendar.modifyEvent(...)
+                function modifyEventErrorHandler (error) {
+                    console.log(error);
+                    console.log('modifyEventErrorHandler');
+                    document.getElementById('report').innerHTML = error;
+                    
+                }
+                
+                function deleteBtn (eventID){
+                    var eventID = eventID[0];
+                    var title= "Appt";
+                    var location = "Los Angeles";
+                    var notes = "note";
+                    var startDate = "2013-01-16 09:30:00";
+                    var endDate =   "2013-01-16 12:30:00";
+                    window.plugins.CDVCalendar.deleteEvent(deleteEventResultHandler,deleteEventErrorHandler,title,location,notes,startDate,endDate);
+                }
+                
+                // modifyEventResultHandler defined CDVCalendar.deleteEvent(...)
+                function deleteEventResultHandler (result) {
+                    console.log(result);
+                    console.log('deleteEventResultHandler');
+                    document.getElementById('report').innerHTML = result;
+                }
+                
+                // modifyEventResultHandler defined CDVCalendar.deleteEvent(...)
+                function deleteEventErrorHandler (error) {
+                    console.log(error);
+                    console.log('deleteEventErrorHandler');
+                    document.getElementById('report').innerHTML = error;
+                    
+                }
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                function buttonEight (id){
+                    window.plugins.CDVCalendar.deleteByID(deleteEventByIdResultHandler,deleteEventByIdErrorHandler,id);
+                }
+                
+                // modifyEventResultHandler defined CDVCalendar.deleteEvent(...)
+                function deleteEventByIdResultHandler (result) {
+                    console.log(result);
+                    console.log('deleteEventByIdResultHandler');
+                    
+                    if (eventID) {
+                        eventID[0] = result;
+                        console.log('eventID[0] = '+eventID[0]);
+                        document.getElementById('report').innerHTML = eventID[0];
+                    }
+                }
+                
+                // modifyEventResultHandler defined CDVCalendar.deleteEvent(...)
+                function deleteEventByIdErrorHandler (error) {
+                    console.log(result);
+                    console.log('deleteEventByIdResultHandler'+result);
+                    
+                    if (eventID) {
+                        eventID[0] = result;
+                        console.log('eventID[0] = '+eventID[0]);
+                        document.getElementById('report').innerHTML = eventID[0];
+                    }
+                }
+                
+                
+                function listIDS(eventID){
+                    for (var i=0; i<eventID.length; i++) {
+                        console.log(  eventID[i] );
+                    }
+                }
+                
+                function helpButton(){
+	                window.open('http://www.youtube.com/watch?v=sPfxMIhEUrQ&autoplay=1', '_blank', 'location=yes');
+                }
+                
                 </script>
             
-            <style type="text/css"> button { color:gray; float: none; width: 80%; height: 20px ;margin-left: 10%;  }</style>
+            <style type="text/css">
+                body {background-color:#cfd3db;}
+                button { color: gray;width: 80%;margin-left: 10%; }
+                .title { color:rgba(70,73,79,0.89);font-size: larger; }
+                .report { color: black; font-size: small; background-color: transparent; height: 60px; margin: 3px; padding-left: 10px; }
+                </style>
             </head>
     <body onload="onBodyLoad()">
         
-        <div id='report' class='report'>CDVCalendar</div><br><hr>
         
-        <button onclick="init('success');">init!</button><br><div id='init' class="button"></div><hr>
-        <button onclick="buttonOne();">Create 1!</button><br><div id="create1"  class="button"></div><hr>
-        <button onclick="buttonFour();">Find 1!</button><br><div id="find1"  class="button"></div><hr>
-        <button onclick="buttonEight(eventID);">DeleteByID1!</button><br><div id="deleteByID" class="button"></div><hr>
-        <button onclick="buttonThree();">Delete 1!</button><br><div id="delete1"  class="button"></div><hr>
+        <button onclick="init('success');">init!</button><br><div id="init" class="button"></div><hr>
+        
+        <button onclick="createEventBtn1();">Create 1!</button><br><div id="create1"  class="button"></div><hr>
+        <button onclick="createEventBtn2();">Create 2!</button><br><div id="create1"  class="button"></div><hr>
+        <button onclick="findByArrayBtn();">Find 1!</button><br><div id="find1"  class="button"></div><hr>
+        <button onclick="findByIDBtn('00B6D5E4-CB38-44C1-BA92-7CA1A74E761A:72EF78B0-353E-497C-AEF0-73A5E0D2F1B');">Find 1!</button><br><div id="find1"  class="button"></div><hr>
+        
+        <button onclick="buttonEight(eventID[0]);">DeleteByID1!</button><br><div class="button"></div><hr>
+        
         <button onclick="buttonTwo();">Modify 1!</button><br><div id="modify1"  class="button"></div><hr>
         
-       
+        <div class="report" id="report">CDVCalendar</div><hr>
+        
         
         
         
