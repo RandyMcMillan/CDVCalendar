@@ -218,8 +218,9 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
 															messageAsString :error.userInfo.description];
 		[self writeJavascript:[pluginResult toErrorCallbackString:callbackId]];
 	} else {
-		NSLog(@"Reached Success");
-		CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+		NSLog(@"Store your eventIds! >>>------> %@",myEvent.eventIdentifier);
+		CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
+                                         messageAsString:myEvent.eventIdentifier];
 		[self writeJavascript:[pluginResult toSuccessCallbackString:callbackId]];
 	}
 }
@@ -429,28 +430,38 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
     int i;
     for (i = 0; i < matchingEvents.count; i++)
     {
-        EKEvent *returnEvent = [matchingEvents objectAtIndex:i];
-        NSString *returnEventString = returnEvent.eventIdentifier;
-        NSLog(@"returnEventString = %@",returnEventString);
 
-        
-       if (matchingEvents.count > 0) {
-        // Return the results we got
+        if (matchingEvents.count > 0 ) {
+            
+        EKEvent *returnEvent = [matchingEvents objectAtIndex:i];
         CDVPluginResult* result = [CDVPluginResult
                                    resultWithStatus: CDVCommandStatus_OK
                                    messageAsString: returnEvent.eventIdentifier
                                    ];
-             [self writeJavascript:[result toSuccessCallbackString:callbackId]];
-    }
-    else {
-        CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT];
-        [self writeJavascript:[result toErrorCallbackString:callbackId]];
+        [self writeJavascript:[result toSuccessCallbackString:callbackId]];
+        
+        }
+        
+        if (matchingEvents.count == 0 ) {
+            
+        
+            
+            CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT];
+            [self writeJavascript:[result toErrorCallbackString:callbackId]];
+            
+        }
+        
+        
     }
     
+    
+
+
+    
  
+    
         
-        
-    }
+    
     
     
     
