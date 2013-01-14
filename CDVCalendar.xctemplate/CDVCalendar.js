@@ -89,9 +89,8 @@
  cordovaRef.exec(successCallback,errorCallback,"CDVCalendar","findEvent", [title,location,notes,startDate,endDate]);
  }
  
- 
- //deleteByID
- CDVCalendar.prototype.deleteByID = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
+ //findEvent
+ CDVCalendar.prototype.deleteByID = function(successCallback, errorCallback, id) {
  if (typeof errorCallback != "function")  {
  console.log("calendarPlugin.deleteByID failure: errorCallback parameter must be a function");
  return
@@ -100,9 +99,9 @@
  console.log("calendarPlugin.deleteByID failure: successCallback parameter must be a function");
  return
  }
- cordovaRef.exec(successCallback,errorCallback,"CDVCalendar","deleteByID", [title,location,notes,startDate,endDate]);
+ cordovaRef.exec(successCallback,errorCallback,"CDVCalendar","deleteByID", [id]);
  }
-
+ 
  
  //install
  CDVCalendar.install = function(){

@@ -259,6 +259,21 @@
                 }
                 
                 
+                function buttonEight (id){
+                    
+                    /*
+                     console.log(title);
+                     console.log(location);
+                     console.log(notes);
+                     console.log(startDate);
+                     console.log(endDate);
+                     */
+                    window.plugins.CDVCalendar.deleteByID(deleteEventResultHandler,deleteEventErrorHandler,id);
+                    
+                }
+                
+                
+                
                 
                 // findEventResultHandler defined CDVCalendar.findEvent(...)
                 function findEventResultHandler (result) {
@@ -282,8 +297,6 @@
                 </script>
             
             <style type="text/css"> button { color:gray; float: none; width: 80%; height: 30px ;margin-left: 10%;  } a{color: aqua} </style>
-            
-            
             </head>
     <body onload="onBodyLoad()">
         
@@ -291,21 +304,21 @@
         
         <button onclick="init('success');">init!</button><br><div id='init' class="button"></div><hr>
         
-        <button onclick="buttonOne();">Create 1!</button><br><div id="Create1"  class="button"></div><hr>
+        <button onclick="buttonOne();">Create 1!</button><br><div id="create1"  class="button"></div><hr>
         
-        <button onclick="buttonTwo();">Modify 1!</button><br><div id="Modify1"  class="button"></div><hr>
+        <button onclick="buttonTwo();">Modify 1!</button><br><div id="modify1"  class="button"></div><hr>
         
-        <button onclick="buttonThree();">Delete 1!</button><br><div id="Delete1"  class="button"></div><hr>
+        <button onclick="buttonThree();">Delete 1!</button><br><div id="delete1"  class="button"></div><hr>
         
-        <button onclick="buttonFour();">Find 1!</button><br><div id="Find1"  class="button"></div><hr>
+        <button onclick="buttonFour();">Find 1!</button><br><div id="find1"  class="button"></div><hr>
         
-        <button onclick="buttonFive();">Create 2!</button><br><div id="Create2"  class="button"></div><hr>
+        <button onclick="buttonFive();">Create 2!</button><br><div id="create2"  class="button"></div><hr>
         
-        <button onclick="buttonSix();">Find 2!</button><br><div id="Find2"  class="button"></div><hr>
+        <button onclick="buttonSix();">Find 2!</button><br><div id="find2"  class="button"></div><hr>
         
-        <button onclick="buttonSeven();">Delete 2!</button><br><div id="Delete2" class="button"></div><hr>
+        <button onclick="buttonSeven();">Delete 2!</button><br><div id="delete2" class="button"></div><hr>
         
-        
+        <button onclick="buttonEight('24CC7566-A326-4CA1-9E98-9E8543A5754D:746194DC-79D2-4E7B-82E8-1B504033C1A0');">Delete By ID!</button><br><div id="deleteByID" class="button"></div><hr>
         
         
         
