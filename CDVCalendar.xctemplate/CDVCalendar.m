@@ -427,7 +427,6 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
     NSLog(@"deleteByID id = %@",self.eventID);
 
 	EKEvent *myEvent = [self.eventStore eventWithIdentifier:self.eventID];
-    
     NSError *error = NULL;
     [self.eventStore removeEvent:myEvent span:EKSpanThisEvent error:&error];
     
@@ -438,14 +437,17 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
         CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
                                                            messageAsString:error.userInfo.description];
         [self writeJavascript:[pluginResult toErrorCallbackString:callbackId]];
+        self.eventID = NULL;
+ 
         
     }
     else {
         CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         [self writeJavascript:[pluginResult toSuccessCallbackString:callbackId]];
+        self.eventID = NULL;
+
     }
 
-    
     
 }
 
