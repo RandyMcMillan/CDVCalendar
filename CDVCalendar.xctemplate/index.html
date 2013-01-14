@@ -274,47 +274,54 @@
                 
                 
                 
+                function helpButton(){
+	                
+	                window.open('https://github.com/RandyMcMillan/cdv-ios-plugin-templates/issues', '_blank', 'location=yes');
+                    
+                }
                 </script>
             
-            <style type="text/css"> button { color:gray; float: none; width: 80%; height: 30px;margin-left: 10%;  } a{color: aqua} </style>
+            <style type="text/css"> button { color:gray; float: none; width: 80%; height: 30px ;margin-left: 10%;  } a{color: aqua} </style>
             
             
             </head>
     <body onload="onBodyLoad()">
         
-        <h1>Hey, it's Cordova CDVCalendar Plugin!</h1>
+        <div id='report' class='report'>CDVCalendar</div><br><hr>
         
-        <button onclick="init('success');">init!</button><br><div id='init' class="button">init
-	        
-        </div><hr>
+        <button onclick="init('success');">init!</button><br><div id='init' class="button"></div><hr>
         
-        <button onclick="buttonOne();">Create 1!</button><br><div id='Create 1'  class="button">Create 1
-	        
-        </div></div><hr>
+        <button onclick="buttonOne();">Create 1!</button><br><div id="Create1"  class="button"></div><hr>
         
-        <button onclick="buttonTwo();">Modify 1!</button><br><div id='Modify 1'  class="button">Modify 1
-        	
-        </div><hr>
+        <button onclick="buttonTwo();">Modify 1!</button><br><div id="Modify1"  class="button"></div><hr>
         
-        <button onclick="buttonThree();">Delete 1!</button><br><div id="Delete 1"  class="button">Delete 1
-        	
-        </div><hr>
+        <button onclick="buttonThree();">Delete 1!</button><br><div id="Delete1"  class="button"></div><hr>
         
-        <button onclick="buttonFour();">Find 1!</button><br><div id='Find 1'  class="button">Find 1
-	        
-        </div><hr>
+        <button onclick="buttonFour();">Find 1!</button><br><div id="Find1"  class="button"></div><hr>
         
-        <button onclick="buttonFive();">Create 2!</button><br><div id='Create 2'  class="button">Create 2
-	        `
-        </div><hr>
+        <button onclick="buttonFive();">Create 2!</button><br><div id="Create2"  class="button"></div><hr>
         
-        <button onclick="buttonSix();">Find 2!</button><br><div id='Find 2'  class="button">Find 2
-	        
-        </div><hr>
+        <button onclick="buttonSix();">Find 2!</button><br><div id="Find2"  class="button"></div><hr>
         
-        <button onclick="buttonSeven();">Delete 2!</button><br><div id='Delete 2' class="button">Delete 2
-            
-        </div><hr>
+        <button onclick="buttonSeven();">Delete 2!</button><br><div id="Delete2" class="button"></div><hr>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <button onclick="helpButton();">Help</button><br><div id="help" class="button"></div><hr>
         
     </body>
 </html>
