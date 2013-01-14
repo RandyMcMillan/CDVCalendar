@@ -39,6 +39,7 @@ extern NSString *const kCDVCalendarDocWrite;
 
 @property (nonatomic, retain) EKEventStore *eventStore;
 @property (nonatomic,readwrite,retain) EKEvent *returnEvent;
+@property (nonatomic,readwrite,retain) NSString *eventID;
 
 - (void)initEventStoreWithCalendarCapabilities;
 
@@ -53,5 +54,6 @@ extern NSString *const kCDVCalendarDocWrite;
 - (void)modifyEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options;
 - (void)findEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options;
 - (void)deleteEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options;
+- (void)deleteByID:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options;
 
 @end

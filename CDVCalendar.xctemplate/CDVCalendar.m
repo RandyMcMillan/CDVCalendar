@@ -42,7 +42,8 @@ NSString *const kCDVCalendarSAVED = @"navigator.notification.alert('MESSAGE',cal
 NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',docWrite,'Event Saved','OK');";
 
 @synthesize eventStore;
-
+@synthesize returnEvent;
+@synthesize eventID;
 
 
 #pragma mark Initialization functions
@@ -414,15 +415,24 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
         [self writeJavascript:[result toErrorCallbackString:callbackId]];
     }
     
+}
+    
+    
+- (void)deleteByID:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options {
+
+
+    NSString *callbackId = [arguments pop];
+    self.eventID      = [arguments objectAtIndex:0];
+ 
+    NSLog(@"deleteByID id = %@",self.eventID);
+
+}
  
     
     
     
     
     
-    
-    
-    
 
 
 
@@ -445,4 +455,7 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
 
 
 
-}@end
+
+
+
+@end
