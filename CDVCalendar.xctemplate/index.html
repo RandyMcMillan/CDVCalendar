@@ -30,6 +30,7 @@
                  for more details -jm */
                 function onDeviceReady() {
                     
+                    init();
                     
                 }
                 
@@ -93,6 +94,7 @@
                 function createEventResultHandler (result) {
                     console.log(result);
                     console.log('createEventResultHandler');
+                    
                 }
                 
                 // createEventErrorHandler defined CDVCalendar.createEvent(...)
@@ -259,32 +261,71 @@
                 }
                 
                 
+                var eventID = new Array();
+                eventID[0] = 'FFC13D1D-6779-455E-8D6F-AB997250DA1D:FFA25CB5-7F2E-48F8-9B38-09F87A9CFDCD';
+                
+                
                 function buttonEight (id){
                     
-                    /*
-                     console.log(title);
-                     console.log(location);
-                     console.log(notes);
-                     console.log(startDate);
-                     console.log(endDate);
-                     */
-                    window.plugins.CDVCalendar.deleteByID(deleteEventResultHandler,deleteEventErrorHandler,id);
+                    window.plugins.CDVCalendar.deleteByID(deleteEventByIdResultHandler,deleteEventByIdErrorHandler,id);
                     
                 }
                 
+                
+                
+                
+                // modifyEventResultHandler defined CDVCalendar.deleteEvent(...)
+                function deleteEventByIdResultHandler (result) {
+                    console.log(result);
+                    console.log('deleteEventByIdResultHandler');
+                    
+                    if (eventID) {
+                        
+                        eventID[0] = result;
+                        console.log('eventID[0] = '+eventID[0]);
+                        
+                    }
+                    
+                    
+                    
+                }
+                
+                // modifyEventResultHandler defined CDVCalendar.deleteEvent(...)
+                function deleteEventByIdErrorHandler (error) {
+                    console.log(result);
+                    console.log('deleteEventByIdResultHandler'+result);
+                    
+                    if (eventID) {
+                        
+                        eventID[0] = result;
+                        console.log('eventID[0] = '+eventID[0]);
+                        
+                    }
+                    
+                    
+                }
                 
                 
                 
                 // findEventResultHandler defined CDVCalendar.findEvent(...)
                 function findEventResultHandler (result) {
                     console.log(result);
-                    console.log('findEventResultHandler');
+                    console.log('findEventResultHandler result = '+result);
+                    
+                    if (eventID) {
+                        
+                        eventID[0] = result;
+                        console.log('eventID[0] = '+eventID[0]);
+                        
+                    }
+                    
+                    
                 }
                 
                 // findEventErrorHandler defined CDVCalendar.findEvent(...)
                 function findEventErrorHandler (error) {
                     console.log(error);
-                    console.log('findEventErrorHandler');
+                    console.log('findEventErrorHandler '+error);
                 }
                 
                 
@@ -296,7 +337,7 @@
                 }
                 </script>
             
-            <style type="text/css"> button { color:gray; float: none; width: 80%; height: 30px ;margin-left: 10%;  } a{color: aqua} </style>
+            <style type="text/css"> button { color:gray; float: none; width: 80%; height: 20px ;margin-left: 10%;  }</style>
             </head>
     <body onload="onBodyLoad()">
         
@@ -305,20 +346,17 @@
         <button onclick="init('success');">init!</button><br><div id='init' class="button"></div><hr>
         
         <button onclick="buttonOne();">Create 1!</button><br><div id="create1"  class="button"></div><hr>
+        <button onclick="buttonFour();">Find 1!</button><br><div id="find1"  class="button"></div><hr>
+        <button onclick="buttonEight(eventID[0]);">DeleteByID1!</button><br><div id="deleteByID" class="button"></div><hr>
+        <button onclick="buttonThree();">Delete 1!</button><br><div id="delete1"  class="button"></div><hr>
         
         <button onclick="buttonTwo();">Modify 1!</button><br><div id="modify1"  class="button"></div><hr>
         
-        <button onclick="buttonThree();">Delete 1!</button><br><div id="delete1"  class="button"></div><hr>
-        
-        <button onclick="buttonFour();">Find 1!</button><br><div id="find1"  class="button"></div><hr>
-        
         <button onclick="buttonFive();">Create 2!</button><br><div id="create2"  class="button"></div><hr>
-        
         <button onclick="buttonSix();">Find 2!</button><br><div id="find2"  class="button"></div><hr>
-        
         <button onclick="buttonSeven();">Delete 2!</button><br><div id="delete2" class="button"></div><hr>
         
-        <button onclick="buttonEight('24CC7566-A326-4CA1-9E98-9E8543A5754D:746194DC-79D2-4E7B-82E8-1B504033C1A0');">Delete By ID!</button><br><div id="deleteByID" class="button"></div><hr>
+        
         
         
         
