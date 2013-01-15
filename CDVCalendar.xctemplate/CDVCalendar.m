@@ -279,7 +279,7 @@ NSString *const kCDVCalendarDocWrite	= @"navigator.notification.alert('message',
 }
 
 
-- (void)modifyEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
+- (void)modifyEventByArray:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
 {
 	// get the callback id
 	NSString *callbackId = [arguments pop];
@@ -346,6 +346,17 @@ NSString *const kCDVCalendarDocWrite	= @"navigator.notification.alert('message',
 	if (matchingEvents.count > 1) {
 		NSLog(@">>>-----> matchingEvents.count = %i", matchingEvents.count);
 	}
+}
+
+- (void)modifyEventByID:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options{
+
+    NSLog(@"modifyByID");
+    
+        NSString *callbackId = [arguments pop];
+        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+        [self writeJavascript:[pluginResult toSuccessCallbackString:callbackId]];
+
+
 }
 
 - (void)deleteEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options

@@ -132,13 +132,13 @@
                     
                 }
                 
-                function modifyBtn (){
+                function modifyByArrayBtn (){
                     var title= "Appt";
                     var location = "Los Angeles";
-                    var notes = "modified";
-                    var startDate = "2013-01-17 09:30:00";
-                    var endDate =   "2013-01-17 12:30:00";
-                    window.plugins.CDVCalendar.modifyEvent(modifyEventResultHandler,modifyEventErrorHandler,title,location,notes,startDate,endDate);
+                    var notes = "note";
+                    var startDate = "2013-01-16 09:30:00";
+                    var endDate =   "2013-01-16 12:30:00";
+        window.plugins.CDVCalendar.modifyEventByArray(modifyEventResultHandler,modifyEventErrorHandler,title,location,notes,startDate,endDate);
                 }
                 
                 // modifyEventResultHandler defined CDVCalendar.modifyEvent(...)
@@ -272,6 +272,14 @@
             <td><button onclick="deleteByIdBtn(eventID[1]);"> eventID[1] </button><br><div class="dButton"></div></td>
             <td><button onclick="deleteByIdBtn(eventID[2]);"> eventID[2] </button><br><div class="dButton"></div></td>
             </table><hr>
+        </center>
+        <center>
+            <table> <colgroup span="3" class="columns"></colgroup>
+                <tr><center><th><th>Modify Events<th><th><tr>
+                    <td><button onclick="modifyByArrayBtn();"> modByArray </button><br><div class="dButton"></div></td>
+                    <td><button onclick="deleteByIdBtn(eventID[1]);"> eventID[1] </button><br><div class="dButton"></div></td>
+                    <td><button onclick="deleteByIdBtn(eventID[2]);"> eventID[2] </button><br><div class="dButton"></div></td>
+                    </table><hr>
         </center>
         
         
