@@ -145,7 +145,7 @@
                 function modifyEventResultHandler (result) {
                     console.log(result);
                     console.log('modifyEventResultHandler');
-                    document.getElementById('report').innerHTML = result;
+                    document.getElementById('report').innerHTML = 'modified '+result;
                     
                 }
                 
@@ -153,7 +153,7 @@
                 function modifyEventErrorHandler (error) {
                     console.log(error);
                     console.log('modifyEventErrorHandler');
-                    document.getElementById('report').innerHTML = error;
+                    document.getElementById('report').innerHTML = 'modified '+error;
                 }
                 
                 function deleteBtn (eventID){
@@ -259,19 +259,19 @@
                 </style>
             </head>
     <body onload="onBodyLoad()">
-        <div class="report" id="report">CDVCalendar</div><hr>
+        <div class="report" id="report">CDVCalendar</div>
         <button onclick="init('success');">init!</button><br><div id="init" class="button"></div>
         <button onclick="createEventBtn1();">Create Event!</button><br><div class="button"></div>
         <button onclick="createEventBtn2();">Create Event With Alert!</button><br><div class="button"></div>
         <button onclick="listIDs(eventID);">listIDs</button><br><div class="button"></div>
-        <button onclick="findByArrayBtn();"> findByArrayBtn </button><br><div class=""></div><hr>
+        <button onclick="findByArrayBtn();"> findByArrayBtn </button><br><div class=""></div>
         <center>
             <table> <colgroup span="3" class="columns"></colgroup>
             <tr><center><th><th>Delete Events<th><th><tr>
             <td><button onclick="deleteByIdBtn(eventID[0]);"> eventID[0] </button><br><div class="dButton"></div></td>
             <td><button onclick="deleteByIdBtn(eventID[1]);"> eventID[1] </button><br><div class="dButton"></div></td>
             <td><button onclick="deleteByIdBtn(eventID[2]);"> eventID[2] </button><br><div class="dButton"></div></td>
-            </table><hr>
+            </table>
         </center>
         <center>
             <table> <colgroup span="3" class="columns"></colgroup>
@@ -279,13 +279,13 @@
                     <td><button onclick="modifyByArrayBtn();"> modByArray </button><br><div class="dButton"></div></td>
                     <td><button onclick="deleteByIdBtn(eventID[1]);"> eventID[1] </button><br><div class="dButton"></div></td>
                     <td><button onclick="deleteByIdBtn(eventID[2]);"> eventID[2] </button><br><div class="dButton"></div></td>
-                    </table><hr>
+                    </table>
         </center>
         
         
         
         
-        <button onclick="helpButton();">Help</button><br><div class="button"></div><hr>
+        <button onclick="helpButton();">Help</button><br><div class="button"></div>
        
     </body>
 </html>

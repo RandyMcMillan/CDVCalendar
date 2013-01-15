@@ -311,7 +311,7 @@ NSString *const kCDVCalendarDocWrite	= @"navigator.notification.alert('message',
 	NSArray *matchingEvents = [self findEKEventsWithTitle:title location:location message:message startDate:myStartDate endDate:myEndDate];
 
 	if (matchingEvents.count == 0) {
-		NSLog(@">>>-----> matchingEvents.count = %i", matchingEvents.count);
+		NSLog(@"\n \n >>>-----> matchingEvents.count = %i \n \n ", matchingEvents.count);
 	}
 
 	if (matchingEvents.count == 1) {
@@ -334,17 +334,22 @@ NSString *const kCDVCalendarDocWrite	= @"navigator.notification.alert('message',
 																messageAsString :error.userInfo.description];
 			[self writeJavascript:[pluginResult toErrorCallbackString:callbackId]];
 		} else {
-			CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+			CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
+                                             messageAsString:theEvent.eventIdentifier];
 			[self writeJavascript:[pluginResult toSuccessCallbackString:callbackId]];
 		}
 	} else {
+        
 		// Otherwise return a no result error
-		CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT];
+		CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT
+                                         messageAsInt:matchingEvents.count];
 		[self writeJavascript:[pluginResult toErrorCallbackString:callbackId]];
-	}
+	
+    
+    }
 
 	if (matchingEvents.count > 1) {
-		NSLog(@">>>-----> matchingEvents.count = %i", matchingEvents.count);
+		NSLog(@"\n \n >>>-----> matchingEvents.count = %i \n \n", matchingEvents.count);
 	}
 }
 
