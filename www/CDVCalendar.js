@@ -78,7 +78,7 @@
  cordovaRef.exec(successCallback,errorCallback,"CDVCalendar","modifyEventByID", [title,location,notes,startDate,endDate,id]);
  }
  
- //modifyEvent
+ //modifyEventByArray
  CDVCalendar.prototype.modifyEventByArray = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
  if (typeof errorCallback != "function")  {
  console.log("calendarPlugin.modifyEventByArray failure: errorCallback parameter must be a function");
