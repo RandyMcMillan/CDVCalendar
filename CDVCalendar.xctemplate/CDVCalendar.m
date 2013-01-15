@@ -35,15 +35,15 @@
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 @implementation CDVCalendar
-///REF: LINE: 133
-NSString *const kCDVCalendarINIT		= @"console.log('kCDVCalendarINIT = CDVCalendar Cordova Plugin is initialized.')";
-///REF: http://docs.phonegap.com/en/2.3.0/cordova_notification_notification.md.html#Notification
-NSString *const kCDVCalendarALERT		= @"navigator.notification.alert('kCDVCalendarALERT = Cordova  CDVCalendar Plugin is working!')";
-///REF: http://docs.phonegap.com/en/2.3.0/cordova_notification_notification.md.html#Notification
+//REF: LINE: 133
+NSString *const kCDVCalendarINIT = @"console.log('kCDVCalendarINIT = CDVCalendar Cordova Plugin is initialized.')";
+//REF: http://docs.phonegap.com/en/2.3.0/cordova_notification_notification.md.html#Notification
+NSString *const kCDVCalendarALERT = @"navigator.notification.alert('kCDVCalendarALERT = Cordova  CDVCalendar Plugin is working!')";
+//REF: http://docs.phonegap.com/en/2.3.0/cordova_notification_notification.md.html#Notification
 NSString *const kCDVCalendarSAVED		= @"navigator.notification.alert('MESSAGE CDVCalendar.m LINE:41',calAlertDismissed,'Event Create & Saved','OK');";
 NSString *const kCDVCalendarSAVEDlog	= @"console.log('created and saved');";
-///Not used yet
-NSString *const kCDVCalendarDocWrite	= @"navigator.notification.alert('message',docWrite,'Event Saved','OK');";
+//Not used yet
+NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',docWrite,'Event Saved','OK');";
 
 @synthesize eventStore;
 @synthesize returnEvent;
@@ -137,14 +137,15 @@ NSString *const kCDVCalendarDocWrite	= @"navigator.notification.alert('message',
 
 - (void)createEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
 {
-	EKEvent *myEvent = [EKEvent eventWithEventStore:self.eventStore];
-	NSString *callbackId = [arguments pop];
-	NSString *title = [arguments objectAtIndex:0];
-	NSString *location = [arguments objectAtIndex:1];
-	NSString *message = [arguments objectAtIndex:2];
-	NSString *startDate = [arguments objectAtIndex:3];
-	NSString *endDate = [arguments objectAtIndex:4];
-	NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
+	EKEvent			*myEvent	= [EKEvent eventWithEventStore:self.eventStore];
+	NSString		*callbackId = [arguments pop];
+	NSString		*title		= [arguments objectAtIndex:0];
+	NSString		*location	= [arguments objectAtIndex:1];
+	NSString		*message	= [arguments objectAtIndex:2];
+	NSString		*startDate	= [arguments objectAtIndex:3];
+	NSString		*endDate	= [arguments objectAtIndex:4];
+	NSDateFormatter *df			= [[[NSDateFormatter alloc] init] autorelease];
+
 	[df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 	NSDate	*myStartDate	= [df dateFromString:startDate];
 	NSDate	*myEndDate		= [df dateFromString:endDate];
@@ -189,14 +190,15 @@ NSString *const kCDVCalendarDocWrite	= @"navigator.notification.alert('message',
 
 - (void)createEventWithAlert:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
 {
-	EKEvent *myEvent = [EKEvent eventWithEventStore:self.eventStore];
-	NSString *callbackId = [arguments pop];
-	NSString *title = [arguments objectAtIndex:0];
-	NSString *location = [arguments objectAtIndex:1];
-	NSString *message = [arguments objectAtIndex:2];
-	NSString *startDate = [arguments objectAtIndex:3];
-	NSString *endDate = [arguments objectAtIndex:4];
-	NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
+	EKEvent			*myEvent	= [EKEvent eventWithEventStore:self.eventStore];
+	NSString		*callbackId = [arguments pop];
+	NSString		*title		= [arguments objectAtIndex:0];
+	NSString		*location	= [arguments objectAtIndex:1];
+	NSString		*message	= [arguments objectAtIndex:2];
+	NSString		*startDate	= [arguments objectAtIndex:3];
+	NSString		*endDate	= [arguments objectAtIndex:4];
+	NSDateFormatter *df			= [[[NSDateFormatter alloc] init] autorelease];
+
 	[df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 	NSDate	*myStartDate	= [df dateFromString:startDate];
 	NSDate	*myEndDate		= [df dateFromString:endDate];
@@ -242,6 +244,7 @@ NSString *const kCDVCalendarDocWrite	= @"navigator.notification.alert('message',
 - (void)modifyEventByArray:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
 {
 	NSString *callbackId = [arguments pop];
+
 	NSLog(@"callbackId = '%@'", callbackId);
 	NSString *title = [arguments objectAtIndex:0];
 	NSLog(@"title = '%@'", title);
@@ -303,14 +306,15 @@ NSString *const kCDVCalendarDocWrite	= @"navigator.notification.alert('message',
 
 - (void)modifyEventByID:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
 {
-	NSString *callbackId = [arguments pop];
-	NSString *title = [arguments objectAtIndex:0];
-	NSString *location = [arguments objectAtIndex:1];
-	NSString *message = [arguments objectAtIndex:2];
-	NSString *startDate = [arguments objectAtIndex:3];
-	NSString *endDate = [arguments objectAtIndex:4];
-	NSString *eventID = [arguments objectAtIndex:5];
-	NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
+	NSString		*callbackId = [arguments pop];
+	NSString		*title		= [arguments objectAtIndex:0];
+	NSString		*location	= [arguments objectAtIndex:1];
+	NSString		*message	= [arguments objectAtIndex:2];
+	NSString		*startDate	= [arguments objectAtIndex:3];
+	NSString		*endDate	= [arguments objectAtIndex:4];
+	NSString		*eventID	= [arguments objectAtIndex:5];
+	NSDateFormatter *df			= [[[NSDateFormatter alloc] init] autorelease];
+
 	[df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 	NSDate	*myStartDate	= [df dateFromString:startDate];
 	NSDate	*myEndDate		= [df dateFromString:endDate];
@@ -336,18 +340,18 @@ NSString *const kCDVCalendarDocWrite	= @"navigator.notification.alert('message',
 															messageAsString :theEvent.eventIdentifier];
 		[self writeJavascript:[pluginResult toSuccessCallbackString:callbackId]];
 	}
-
 }
 
 - (void)deleteEvent:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
 {
-	NSString *callbackId = [arguments pop];
-	NSString *title = [arguments objectAtIndex:0];
-	NSString *location = [arguments objectAtIndex:1];
-	NSString *message = [arguments objectAtIndex:2];
-	NSString *startDate = [arguments objectAtIndex:3];
-	NSString *endDate = [arguments objectAtIndex:4];
-	NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
+	NSString		*callbackId = [arguments pop];
+	NSString		*title		= [arguments objectAtIndex:0];
+	NSString		*location	= [arguments objectAtIndex:1];
+	NSString		*message	= [arguments objectAtIndex:2];
+	NSString		*startDate	= [arguments objectAtIndex:3];
+	NSString		*endDate	= [arguments objectAtIndex:4];
+	NSDateFormatter *df			= [[[NSDateFormatter alloc] init] autorelease];
+
 	[df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 	NSDate	*myStartDate	= [df dateFromString:startDate];
 	NSDate	*myEndDate		= [df dateFromString:endDate];
@@ -435,8 +439,9 @@ NSString *const kCDVCalendarDocWrite	= @"navigator.notification.alert('message',
 
 - (void)deleteByID:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
 {
-	NSString *callbackId = [arguments pop];
-	NSString *eventID = [arguments objectAtIndex:0];
+	NSString	*callbackId = [arguments pop];
+	NSString	*eventID	= [arguments objectAtIndex:0];
+
 	NSLog(@" eventID = %@", eventID);
 	NSLog(@"\n \ndeleteByID id = %@ \n \n", eventID);
 	NSString	*deletedEventID = nil;
