@@ -141,22 +141,22 @@ NSString *const kCDVCalendarDocWrite	= @"navigator.notification.alert('message',
 	// get the callback id
 	NSString *callbackId = [arguments pop];
 
-	NSLog(@"callbackId = '%@'", callbackId);
-
+	//NSLog(@"callbackId = '%@'", callbackId);
+    //
 	NSString *title = [arguments objectAtIndex:0];
-	NSLog(@"title = '%@'", title);
+	//NSLog(@"title = '%@'", title);
 
 	NSString *location = [arguments objectAtIndex:1];
-	NSLog(@"location = '%@'", location);
+	//NSLog(@"location = '%@'", location);
 
 	NSString *message = [arguments objectAtIndex:2];
-	NSLog(@"notes = '%@'", message);
+	//NSLog(@"notes = '%@'", message);
 
 	NSString *startDate = [arguments objectAtIndex:3];
-	NSLog(@"startDate = '%@'", startDate);
+	//NSLog(@"startDate = '%@'", startDate);
 
 	NSString *endDate = [arguments objectAtIndex:4];
-	NSLog(@"endDate = '%@'", endDate);
+	//NSLog(@"endDate = '%@'", endDate);
 
 	// creating the dateformatter object
 	NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
@@ -183,9 +183,9 @@ NSString *const kCDVCalendarDocWrite	= @"navigator.notification.alert('message',
 									error		:&error];
 	
     // Check error code + return result
-	NSLog(@"BOOL saved = %s", saved ? "YES" : "NO");
+	//NSLog(@"BOOL saved = %s", saved ? "YES" : "NO");
     if (saved) {
-		NSLog(@"kCDVCalendarSAVED = %@", kCDVCalendarSAVED);
+        //	NSLog(@"kCDVCalendarSAVED = %@", kCDVCalendarSAVED);
 		CDVViewController	*mvcCDVCalendar = (CDVViewController *)[super viewController];
 		NSString			*jsString		= kCDVCalendarSAVED;
 		[mvcCDVCalendar.webView stringByEvaluatingJavaScriptFromString:jsString];
@@ -359,9 +359,8 @@ NSString *const kCDVCalendarDocWrite	= @"navigator.notification.alert('message',
 
 	if (matchingEvents.count > 0) {
 		// Return the results we got
-		CDVPluginResult *result = [CDVPluginResult
-			resultWithStatus:CDVCommandStatus_OK
-			messageAsString :self.returnEvent.eventIdentifier
+		CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
+                                                   messageAsString :self.returnEvent.eventIdentifier
 			];
 		[self writeJavascript:[result toSuccessCallbackString:callbackId]];
 	} else {
@@ -394,14 +393,11 @@ NSString *const kCDVCalendarDocWrite	= @"navigator.notification.alert('message',
 	NSString *callbackId = [arguments pop];
 
 	self.eventID = [arguments objectAtIndex:0];
-
 	NSLog(@"deleteByID id = %@", self.eventID);
 
 	EKEvent *myEvent	= [self.eventStore eventWithIdentifier:self.eventID];
 	NSError *error		= NULL;
 	[self.eventStore removeEvent:myEvent span:EKSpanThisEvent error:&error];
-
-	NSLog(@"deleteByID id = %@", self.eventID);
 
 	// Check for error codes and return result
 	if (error) {

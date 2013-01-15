@@ -106,7 +106,9 @@
  console.log("calendarPlugin.deleteByID failure: successCallback parameter must be a function");
  return
  }
+ if (id != null){
  cordovaRef.exec(successCallback,errorCallback,"CDVCalendar","deleteByID", [id]);
+ }else{console.log('id = null!');}
  }
  
  

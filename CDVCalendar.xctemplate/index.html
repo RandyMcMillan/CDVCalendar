@@ -35,7 +35,6 @@
                 }
                 
                 var eventID = new Array();
-                eventID[0] = '[0]';
                 
                 //init
                 function init (returnSuccess){
@@ -83,6 +82,7 @@
                     document.getElementById('report').innerHTML = result;
                     console.log('eventID = '+result);
                     eventID.push(result);
+                    listIDS(eventID);
                 }
                 
                 // createEventErrorHandler defined CDVCalendar.createEvent(...)
@@ -191,7 +191,7 @@
                 
                 
                 
-                function buttonEight (id){
+                function deleteByIdBtn(id){
                     window.plugins.CDVCalendar.deleteByID(deleteEventByIdResultHandler,deleteEventByIdErrorHandler,id);
                 }
                 
@@ -200,11 +200,9 @@
                     console.log(result);
                     console.log('deleteEventByIdResultHandler');
                     
-                    if (eventID) {
-                        eventID[0] = result;
-                        console.log('eventID[0] = '+eventID[0]);
-                        document.getElementById('report').innerHTML = eventID[0];
-                    }
+                    eventID.shift();
+                    console.log('eventID[0] = '+eventID[0]);
+                    document.getElementById('report').innerHTML = eventID[0];
                 }
                 
                 // modifyEventResultHandler defined CDVCalendar.deleteEvent(...)
@@ -221,6 +219,7 @@
                 
                 
                 function listIDS(eventID){
+                    console.log('There are '+eventID.length+' eventID');
                     for (var i=0; i<eventID.length; i++) {
                         console.log(  eventID[i] );
                     }
@@ -245,14 +244,11 @@
         <button onclick="init('success');">init!</button><br><div id="init" class="button"></div><hr>
         
         <button onclick="createEventBtn1();">Create 1!</button><br><div id="create1"  class="button"></div><hr>
-        <button onclick="createEventBtn2();">Create 2!</button><br><div id="create1"  class="button"></div><hr>
-        <button onclick="findByArrayBtn();">Find 1!</button><br><div id="find1"  class="button"></div><hr>
-        <button onclick="findByIDBtn('00B6D5E4-CB38-44C1-BA92-7CA1A74E761A:72EF78B0-353E-497C-AEF0-73A5E0D2F1B');">Find 1!</button><br><div id="find1"  class="button"></div><hr>
-        
-        <button onclick="buttonEight(eventID[0]);">DeleteByID1!</button><br><div class="button"></div><hr>
-        
-        <button onclick="buttonTwo();">Modify 1!</button><br><div id="modify1"  class="button"></div><hr>
-        
+        <button onclick="deleteByIdBtn(eventID[0]);">Create 1!</button><br><div id="create1"  class="button"></div><hr>
+        <button onclick="deleteByIdBtn(eventID[1]);">Create 1!</button><br><div id="create1"  class="button"></div><hr>
+        <button onclick="deleteByIdBtn(eventID[2]);">Create 1!</button><br><div id="create1"  class="button"></div><hr>
+        <button onclick="deleteByIdBtn(eventID[3]);">Create 1!</button><br><div id="create1"  class="button"></div><hr>
+        <button onclick="deleteByIdBtn(eventID[4]);">Create 1!</button><br><div id="create1"  class="button"></div><hr>
         <div class="report" id="report">CDVCalendar</div><hr>
         
         
@@ -271,6 +267,7 @@
         
         
         
+        <button onclick="listIDS(eventID);">ListIDS</button><br><div id="help" class="button"></div><hr>
         
         <button onclick="helpButton();">Help</button><br><div id="help" class="button"></div><hr>
         
