@@ -24,7 +24,6 @@
 //  CDVCalendar Template Created Jan 7 2013
 //  Copyright 2013 @RandyMcMillan
 
-
 #import <Foundation/Foundation.h>
 #import <Cordova/CDVPlugin.h>
 #import <EventKitUI/EventKitUI.h>
@@ -32,13 +31,13 @@
 
 @interface CDVCalendar : CDVPlugin {}
 
-extern NSString *const kCDVCalendarINIT;
-extern NSString *const kCDVCalendarALERT;
-extern NSString *const kCDVCalendarSAVED;
-extern NSString *const kCDVCalendarDocWrite;
+extern NSString *const	kCDVCalendarINIT;
+extern NSString *const	kCDVCalendarALERT;
+extern NSString *const	kCDVCalendarSAVED;
+extern NSString *const	kCDVCalendarDocWrite;
 
-@property (nonatomic, retain) EKEventStore *eventStore;
-@property (nonatomic,readwrite,retain) EKEvent *returnEvent;
+@property (nonatomic, retain) EKEventStore			*eventStore;
+@property (nonatomic, readwrite, retain) EKEvent	*returnEvent;
 
 - (void)initEventStoreWithCalendarCapabilities;
 
