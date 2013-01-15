@@ -189,15 +189,7 @@
                 function deleteEventByIdResultHandler (result) {
                     console.log('deleted '+result);
                     console.log('deleteEventByIdResultHandler');
-                    //document.getElementById('report').innerHTML = result;
-                    
-                    var foundItems = [];
-                    var index = eventID.indexOf(result)
-                    console.log(index);
-                    
-                    
-                    //eventID.shift();
-                    //listIDs(eventID);
+                    document.getElementById('report').innerHTML = 'deleted '+result;
                 }
                 
                 // modifyEventResultHandler defined CDVCalendar.deleteEvent(...)
