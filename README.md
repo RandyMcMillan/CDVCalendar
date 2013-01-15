@@ -1,5 +1,4 @@
-..
-CDVPlugin
+CDVCalendar
 ===
 
 Cordova (iOS) Xcode Plugin Template
