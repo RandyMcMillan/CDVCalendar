@@ -49,6 +49,21 @@
  cordovaRef.exec(successCallback, errorCallback, "CDVCalendar", "createEvent", [title,location,notes,startDate,endDate]);
  }
  
+ //createEventWithAlert
+ CDVCalendar.prototype.createEventWithAlert = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
+ 
+ if (typeof errorCallback != "function")  {
+ console.log("calendarPlugin.createEventWithAlert failure: errorCallback parameter must be a function");
+ return
+ }
+ if (typeof successCallback != "function") {
+ console.log("calendarPlugin.createEventWithAlert failure: successCallback parameter must be a function");
+ return
+ }
+ cordovaRef.exec(successCallback, errorCallback, "CDVCalendar", "createEventWithAlert", [title,location,notes,startDate,endDate]);
+ }
+ 
+ 
  //modifyEvent
  CDVCalendar.prototype.modifyEvent = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
  if (typeof errorCallback != "function")  {
