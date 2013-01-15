@@ -5,20 +5,12 @@
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
         <meta charset="utf-8">
-            
-            
-            <!--- <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="iphone.css" type="text/css" />
-             -->
-            <!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
             <script type="text/javascript" charset="utf-8" src="cordova-2.3.0.js"></script>
             <script type="text/javascript" charset="utf-8" src="CDVCalendar.js"></script>
             <script type="text/javascript" charset="utf-8" src="FormatDateTime.js"></script>
-            
             <script type="text/javascript">
                 
-                
-                function onBodyLoad()
-                {
+                function onBodyLoad(){
                     document.addEventListener("deviceready", onDeviceReady, false);
                 }
                 
@@ -26,10 +18,8 @@
                 /* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
                  see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
                  for more details -jm */
-                function onDeviceReady(eventID) {
-                    
+                function onDeviceReady(eventID){
                     init();
-                    
                 }
                 
                 var eventID = new Array();
@@ -44,7 +34,7 @@
                     console.log(result);
                     document.getElementById('report').innerHTML = 'CDVCalendar status = '+result;
                     window.eventID = [];
-                    listIDS(eventID);
+                    listIDs(eventID);
                     
                     
                 }
@@ -84,7 +74,7 @@
                     document.getElementById('report').innerHTML = result;
                     console.log('eventID = '+result);
                     eventID.unshift(result);
-                    //listIDS(eventID);
+                    //listIDs(eventID);
                 }
                 
                 // createEventErrorHandler defined CDVCalendar.createEvent(...)
@@ -98,7 +88,6 @@
                     console.log('calAlertDismissed called!');
                 }
                 
-                
                 function findByArrayBtn (){
                     var title= "Appt";
                     var location = "Los Angeles";
@@ -109,7 +98,6 @@
                 }
                 
                 function findByIDBtn (eventID){
-                    
                     eventID[0] = 'findEventByID';
                     window.plugins.CDVCalendar.findEventByID(findEventResultHandler,findEventErrorHandler,eventID);
                 }
@@ -129,7 +117,7 @@
                     
                     
                     document.getElementById('report').innerHTML = result;
-                    //listIDS(eventID);
+                    //listIDs(eventID);
                 }
                 
                 // findEventErrorHandler defined CDVCalendar.findEvent(...)
@@ -156,12 +144,12 @@
                     document.getElementById('report').innerHTML = result;
                     
                 }
+                
                 // modifyEventErrorHandler defined CDVCalendar.modifyEvent(...)
                 function modifyEventErrorHandler (error) {
                     console.log(error);
                     console.log('modifyEventErrorHandler');
                     document.getElementById('report').innerHTML = error;
-                    
                 }
                 
                 function deleteBtn (eventID){
@@ -189,14 +177,6 @@
                     
                 }
                 
-                
-                
-                
-                
-                
-                
-                
-                
                 function deleteByIdBtn(id){
                     window.plugins.CDVCalendar.deleteByID(deleteEventByIdResultHandler,deleteEventByIdErrorHandler,id);
                 }
@@ -213,7 +193,7 @@
                     
                     
                     //eventID.shift();
-                    listIDS(eventID);
+                    //listIDs(eventID);
                 }
                 
                 // modifyEventResultHandler defined CDVCalendar.deleteEvent(...)
@@ -229,7 +209,7 @@
                 }
                 
                 
-                function listIDS(eventID){
+                function listIDs(eventID){
                     console.log('There are '+eventID.length+' eventID');
                     for (var i=0; i<eventID.length; i++) {
                         console.log(  'eventID['+i+'] = '+eventID[i]);
@@ -237,7 +217,7 @@
                 }
                 
                 function helpButton(){
-	                window.open('http://www.youtube.com/watch?v=sPfxMIhEUrQ&autoplay=1', '_blank', 'location=yes');
+                    window.open('http://www.youtube.com/watch?v=sPfxMIhEUrQ&autoplay=1', '_blank', 'location=yes');
                 }
                 
                 </script>
@@ -245,33 +225,33 @@
             
             <style media="only screen and (max-device-width: 1024px)" type="text/css">
                 
-                body {background-color:#cfd3db;}
+                
+                body {background-color:#cfd3db;table-layout: auto;}
+                report{font-size: 10pt;}
                 button { color: gray;width: 80%;margin-left: 10%; }
-                create1 {color:red !important}
-                .title { color:rgba(70,73,79,0.89);font-size: larger; }
-                #report { color: black; font-size: auto; background-color: transparent; height: 60px; margin: 3px; padding-left: 10px; }
-                
-                
+                table {min-width: 86%; margin:auto;}
+                                th {font-size: smaller}
+                td{width: 33%;}
                 </style>
             <style media="only screen and (max-device-width: 480px)" type="text/css">
                 
-                body {background-color:#cfd3db;}
-                bu  tton { color: gray;width: 80%;margin-left: 10%; }
-                dButton { color: gray;width: 80%;margin-left: 10%; }
-                
-                create1 {color:red !important}
-                .title { color:rgba(70,73,79,0.89);font-size: larger; }
-                #report { color: black; font-size: auto; background-color: transparent; height: 60px; margin: 3px; padding-left: 10px; }
-                
-                
+                body {background-color:#cfd3db;table-layout: auto;}
+                report{font-size: 10pt;}
+                button { color: gray;width: 80%;margin-left: 10%; }
+                table {min-width: 86%; margin:auto;}
+                                th {font-size: smaller}
+                td{width: 33%;}
                 </style>
+           
+            
             
             <style media="only screen and (min-device-width: 1024px)" type="text/css" >
-                body {background-color:#cfd3db;}
+                body {background-color:#cfd3db;table-layout: auto;}
+                report{font-size: 10pt;}
                 button { color: gray;width: 80%;margin-left: 10%; }
-                create1 {color:red !important}
-                .title { color:rgba(70,73,79,0.89);font-size: larger; }
-                #report { color: black; font-size: auto; background-color: transparent; height: 60px; margin: 3px; padding-left: 10px; }
+                table {min-width: 86%; margin:auto;}
+                th {font-size: smaller}
+                td{width: 33%;}
                 </style>
             </head>
     <body onload="onBodyLoad()">
@@ -283,14 +263,34 @@
         <button onclick="createEventBtn1();">Create Event!</button><br><div class="button"></div>
         <button onclick="createEventBtn2();">Create Event With Alert!</button><br><div class="button"></div><hr>
         
-        <button onclick="listIDS(eventID);">ListIDS</button><br><div class="button"></div>
+        <button onclick="listIDs(eventID);">listIDs</button><br><div class="button"></div>
         <button onclick="findByArrayBtn();"> findByArrayBtn </button><br><div class=""></div><hr>
         
-        <button onclick="deleteByIdBtn(eventID[0]);"> delete eventID[0] </button><br><div class="dButton"></div>
-        <button onclick="deleteByIdBtn(eventID[1]);"> delete eventID[1] </button><br><div class="dButton"></div>
-        <button onclick="deleteByIdBtn(eventID[2]);"> delete eventID[2] </button><br><div class="dButton"></div><hr>
+        
+        
+        <center>
+            <!-- Table with colgroup --> <table> <colgroup span="3" class="columns"></colgroup>
+                <tr><center><th><th>Delete Events<th><th>
+                    <tr>
+                        <td><button onclick="deleteByIdBtn(eventID[0]);">     eventID[0]     </button><br><div class="dButton"></div></td>
+                        <td><button onclick="deleteByIdBtn(eventID[1]);"> eventID[1] </button><br><div class="dButton"></div></td> 
+                        <td><button onclick="deleteByIdBtn(eventID[2]);"> eventID[2] </button><br><div class="dButton"></div></td>
+                        <tr>
+                            <td><button onclick="deleteByIdBtn(eventID[4]);"> eventID[4] </button><br><div class="dButton"></div></td> 
+                            <td><button onclick="deleteByIdBtn(eventID[5]);"> eventID[5] </button><br><div class="dButton"></div></td> 
+                            <td><button onclick="deleteByIdBtn(eventID[6]);"> eventID[6] </button><br><div class="dButton"></div></td>
+                            <tr>
+                                <td><button onclick="deleteByIdBtn(eventID[8]);"> eventID[8] </button><br><div class="dButton"></div></td> 
+                                <td><button onclick="deleteByIdBtn(eventID[9]);"> eventID[9] </button><br><div class="dButton"></div></td> 
+                                <td><button onclick="deleteByIdBtn(eventID[10]);">eventID[10]</button><br><div class="dButton"></div></td>
+            </table><hr> 
+        </center>
+        
+        
+        
         
         <button onclick="helpButton();">Help</button><br><div class="button"></div><hr>
-        
+       
     </body>
 </html>
+
