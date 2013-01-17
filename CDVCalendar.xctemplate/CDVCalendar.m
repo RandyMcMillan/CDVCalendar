@@ -156,7 +156,7 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
 	myEvent.startDate	= myStartDate;
 	myEvent.endDate		= myEndDate;
 	myEvent.calendar	= self.eventStore.defaultCalendarForNewEvents;
-
+    //ADD EventKitUI.framework and EventKit.framework to your project
 	EKAlarm *reminder = [EKAlarm alarmWithRelativeOffset:-2 * 60 * 60];
 
 	[myEvent addAlarm:reminder];
