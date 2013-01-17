@@ -17,8 +17,8 @@
  under the License.
  */
 //
-//  CDVCalendar
-//  CDVCalendar Template Created Jan 7 2013
+//  ___FILEBASENAME___
+//  ___FILEBASENAME___ Template Created Jan 7 2013
 //  Copyright 2013 @RandyMcMillan
 //
 
@@ -26,17 +26,17 @@
  
  var cordovaRef = window.PhoneGap || window.Cordova || window.cordova; // old to new fallbacks
  
- function CDVCalendar(){}
+ function ___FILEBASENAME___(){}
  
  
  
  //init
- CDVCalendar.prototype.init = function(success, fail, resultType) {
- cordovaRef.exec(success, fail, "CDVCalendar", "init", [resultType]);
+ ___FILEBASENAME___.prototype.init = function(success, fail, resultType) {
+ cordovaRef.exec(success, fail, "___FILEBASENAME___", "init", [resultType]);
  }
  
  //createEvent
- CDVCalendar.prototype.createEvent = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
+ ___FILEBASENAME___.prototype.createEvent = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
  
  if (typeof errorCallback != "function")  {
  console.log("calendarPlugin.createEvent failure: errorCallback parameter must be a function");
@@ -46,11 +46,11 @@
  console.log("calendarPlugin.createEvent failure: successCallback parameter must be a function");
  return
  }
- cordovaRef.exec(successCallback, errorCallback, "CDVCalendar", "createEvent", [title,location,notes,startDate,endDate]);
+ cordovaRef.exec(successCallback, errorCallback, "___FILEBASENAME___", "createEvent", [title,location,notes,startDate,endDate]);
  }
  
  //createEventWithAlert
- CDVCalendar.prototype.createEventWithAlert = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
+ ___FILEBASENAME___.prototype.createEventWithAlert = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
  
  if (typeof errorCallback != "function")  {
  console.log("calendarPlugin.createEventWithAlert failure: errorCallback parameter must be a function");
@@ -60,12 +60,12 @@
  console.log("calendarPlugin.createEventWithAlert failure: successCallback parameter must be a function");
  return
  }
- cordovaRef.exec(successCallback, errorCallback, "CDVCalendar", "createEventWithAlert", [title,location,notes,startDate,endDate]);
+ cordovaRef.exec(successCallback, errorCallback, "___FILEBASENAME___", "createEventWithAlert", [title,location,notes,startDate,endDate]);
  }
  
  
  //modifyEventByID
- CDVCalendar.prototype.modifyEventByID = function(successCallback, errorCallback, title, location, notes, startDate, endDate,id) {
+ ___FILEBASENAME___.prototype.modifyEventByID = function(successCallback, errorCallback, title, location, notes, startDate, endDate,id) {
  if (typeof errorCallback != "function")  {
  console.log("calendarPlugin.modifyEventByID failure: errorCallback parameter must be a function");
  return
@@ -75,11 +75,11 @@
  console.log("calendarPlugin.modifyEventByID failure: successCallback parameter must be a function");
  return
  }
- cordovaRef.exec(successCallback,errorCallback,"CDVCalendar","modifyEventByID", [title,location,notes,startDate,endDate,id]);
+ cordovaRef.exec(successCallback,errorCallback,"___FILEBASENAME___","modifyEventByID", [title,location,notes,startDate,endDate,id]);
  }
  
  //modifyEventByArray
- CDVCalendar.prototype.modifyEventByArray = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
+ ___FILEBASENAME___.prototype.modifyEventByArray = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
  if (typeof errorCallback != "function")  {
  console.log("calendarPlugin.modifyEventByArray failure: errorCallback parameter must be a function");
  return
@@ -89,12 +89,12 @@
  console.log("calendarPlugin.modifyEventByArray failure: successCallback parameter must be a function");
  return
  }
- cordovaRef.exec(successCallback,errorCallback,"CDVCalendar","modifyEventByArray", [title,location,notes,startDate,endDate]);
+ cordovaRef.exec(successCallback,errorCallback,"___FILEBASENAME___","modifyEventByArray", [title,location,notes,startDate,endDate]);
  }
 
  
  //deleteEvent
- CDVCalendar.prototype.deleteEvent = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
+ ___FILEBASENAME___.prototype.deleteEvent = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
  if (typeof errorCallback != "function")  {
  console.log("calendarPlugin.deleteEvent failure: errorCallback parameter must be a function");
  return
@@ -103,11 +103,11 @@
  console.log("calendarPlugin.deleteEvent failure: successCallback parameter must be a function");
  return
  }
- cordovaRef.exec(successCallback,errorCallback,"CDVCalendar","deleteEvent", [title,location,notes,startDate,endDate]);
+ cordovaRef.exec(successCallback,errorCallback,"___FILEBASENAME___","deleteEvent", [title,location,notes,startDate,endDate]);
  }
  
  //findEvent
- CDVCalendar.prototype.findEventByArray = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
+ ___FILEBASENAME___.prototype.findEventByArray = function(successCallback, errorCallback, title, location, notes, startDate, endDate) {
  if (typeof errorCallback != "function")  {
  console.log("calendarPlugin.findEventByArray failure: errorCallback parameter must be a function");
  return
@@ -116,18 +116,18 @@
  console.log("calendarPlugin.findEventByArray failure: successCallback parameter must be a function");
  return
  }
- cordovaRef.exec(successCallback,errorCallback,"CDVCalendar","findEventByArray", [title,location,notes,startDate,endDate]);
+ cordovaRef.exec(successCallback,errorCallback,"___FILEBASENAME___","findEventByArray", [title,location,notes,startDate,endDate]);
  }
  
  
  //init
- CDVCalendar.prototype.findEventByID = function(success, fail, resultType) {
- cordovaRef.exec(success, fail, "CDVCalendar", "findEventByID", [resultType]);
+ ___FILEBASENAME___.prototype.findEventByID = function(success, fail, resultType) {
+ cordovaRef.exec(success, fail, "___FILEBASENAME___", "findEventByID", [resultType]);
  }
  
  
  //findEvent
- CDVCalendar.prototype.deleteByID = function(successCallback, errorCallback, id) {
+ ___FILEBASENAME___.prototype.deleteByID = function(successCallback, errorCallback, id) {
  if (typeof errorCallback != "function")  {
  console.log("calendarPlugin.deleteByID failure: errorCallback parameter must be a function");
  return
@@ -137,27 +137,27 @@
  return
  }
  if (id != null){
- cordovaRef.exec(successCallback,errorCallback,"CDVCalendar","deleteByID", [id]);
+ cordovaRef.exec(successCallback,errorCallback,"___FILEBASENAME___","deleteByID", [id]);
  }else{console.log('id = null!');}
  }
  
  
  //install
- CDVCalendar.install = function(){
+ ___FILEBASENAME___.install = function(){
  
  if ( !window.plugins ) {
  window.plugins = {};
  }
- if ( !window.plugins.CDVCalendar ) {
- window.plugins.CDVCalendar = new CDVCalendar();
+ if ( !window.plugins.___FILEBASENAME___ ) {
+ window.plugins.___FILEBASENAME___ = new ___FILEBASENAME___();
  }
  
  }
  
  if (cordovaRef && cordovaRef.addConstructor) {
- cordovaRef.addConstructor(CDVCalendar.install);
+ cordovaRef.addConstructor(___FILEBASENAME___.install);
  } else {
- console.log("CDVCalendar Cordova Plugin could not be installed.");
+ console.log("___FILEBASENAME___ Cordova Plugin could not be installed.");
  return null;
  }
  

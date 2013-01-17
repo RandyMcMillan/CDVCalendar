@@ -20,8 +20,8 @@
 //  Based on https://github.com/felixactv8/Phonegap-Calendar-Plugin-ios
 //  Author: Felix Montanez
 //
-//  CDVCalendar
-//  CDVCalendar Template Created Jan 7 2013
+//  ___FILEBASENAME___
+//  ___FILEBASENAME___ Template Created Jan 7 2013
 //  Copyright 2013 @RandyMcMillan
 
 #import <EventKitUI/EventKitUI.h>
@@ -30,20 +30,20 @@
 #import <Cordova/CDVViewController.h>
 #import <Cordova/CDVDebug.h>
 
-#import "CDVCalendar.h"
+#import "___FILEBASENAME___.h"
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
-@implementation CDVCalendar
+@implementation ___FILEBASENAME___
 //REF: LINE: 133
-NSString *const kCDVCalendarINIT = @"console.log('kCDVCalendarINIT = CDVCalendar Cordova Plugin is initialized.')";
+NSString *const k___FILEBASENAME___INIT = @"console.log('k___FILEBASENAME___INIT = ___FILEBASENAME___ Cordova Plugin is initialized.')";
 //REF: http://docs.phonegap.com/en/2.3.0/cordova_notification_notification.md.html#Notification
-NSString *const kCDVCalendarALERT = @"navigator.notification.alert('kCDVCalendarALERT = Cordova  CDVCalendar Plugin is working!')";
+NSString *const k___FILEBASENAME___ALERT = @"navigator.notification.alert('k___FILEBASENAME___ALERT = Cordova  ___FILEBASENAME___ Plugin is working!')";
 //REF: http://docs.phonegap.com/en/2.3.0/cordova_notification_notification.md.html#Notification
-NSString *const kCDVCalendarSAVED		= @"navigator.notification.alert('MESSAGE CDVCalendar.m LINE:41',calAlertDismissed,'Event Create & Saved','OK');";
-NSString *const kCDVCalendarSAVEDlog	= @"console.log('created and saved');";
+NSString *const k___FILEBASENAME___SAVED		= @"navigator.notification.alert('MESSAGE ___FILEBASENAME___.m LINE:41',calAlertDismissed,'Event Create & Saved','OK');";
+NSString *const k___FILEBASENAME___SAVEDlog	= @"console.log('created and saved');";
 //Not used yet
-NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',docWrite,'Event Saved','OK');";
+NSString *const k___FILEBASENAME___DocWrite = @"navigator.notification.alert('message',docWrite,'Event Saved','OK');";
 
 @synthesize eventStore;
 @synthesize returnEvent;
@@ -51,7 +51,7 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
 
 - (CDVPlugin *)initWithWebView:(UIWebView *)theWebView
 {
-	self = (CDVCalendar *)[super initWithWebView:theWebView];
+	self = (___FILEBASENAME___ *)[super initWithWebView:theWebView];
 
 	if (self) {
 		// [self setup];
@@ -120,16 +120,16 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
 
 - (void)init:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
 {
-	NSLog(@">>>-----> CDVCalendar init!");
+	NSLog(@">>>-----> ___FILEBASENAME___ init!");
 
 	[self initEventStoreWithCalendarCapabilities];
 
 	NSString *callbackId = [arguments pop];
 
-	CDVViewController	*mvcCDVCalendar = (CDVViewController *)[super viewController];
-	NSString			*jsString		= kCDVCalendarINIT;
+	CDVViewController	*mvc___FILEBASENAME___ = (CDVViewController *)[super viewController];
+	NSString			*jsString		= k___FILEBASENAME___INIT;
 
-	[mvcCDVCalendar.webView stringByEvaluatingJavaScriptFromString:jsString];
+	[mvc___FILEBASENAME___.webView stringByEvaluatingJavaScriptFromString:jsString];
 
 	CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
 	[self writeJavascript:[pluginResult toSuccessCallbackString:callbackId]];
@@ -169,9 +169,9 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
 
 	// Check error code + return result
 	if (saved) {
-		CDVViewController	*mvcCDVCalendar = (CDVViewController *)[super viewController];
-		NSString			*jsString		= kCDVCalendarSAVEDlog;
-		[mvcCDVCalendar.webView stringByEvaluatingJavaScriptFromString:jsString];
+		CDVViewController	*mvc___FILEBASENAME___ = (CDVViewController *)[super viewController];
+		NSString			*jsString		= k___FILEBASENAME___SAVEDlog;
+		[mvc___FILEBASENAME___.webView stringByEvaluatingJavaScriptFromString:jsString];
 	}
 
 	if (error) {
@@ -222,9 +222,9 @@ NSString *const kCDVCalendarDocWrite = @"navigator.notification.alert('message',
 
 	// Check error code + return result
 	if (saved) {
-		CDVViewController	*mvcCDVCalendar = (CDVViewController *)[super viewController];
-		NSString			*jsString		= kCDVCalendarSAVED;
-		[mvcCDVCalendar.webView stringByEvaluatingJavaScriptFromString:jsString];
+		CDVViewController	*mvc___FILEBASENAME___ = (CDVViewController *)[super viewController];
+		NSString			*jsString		= k___FILEBASENAME___SAVED;
+		[mvc___FILEBASENAME___.webView stringByEvaluatingJavaScriptFromString:jsString];
 	}
 
 	if (error) {

@@ -20,8 +20,8 @@
 //  Based on https://github.com/felixactv8/Phonegap-Calendar-Plugin-ios
 //  Author: Felix Montanez
 //
-//  CDVCalendar
-//  CDVCalendar Template Created Jan 7 2013
+//  ___FILEBASENAME___
+//  ___FILEBASENAME___ Template Created Jan 7 2013
 //  Copyright 2013 @RandyMcMillan
 
 #import <Foundation/Foundation.h>
@@ -29,12 +29,12 @@
 #import <EventKitUI/EventKitUI.h>
 #import <EventKit/EventKit.h>
 
-@interface CDVCalendar : CDVPlugin {}
+@interface ___FILEBASENAME___ : CDVPlugin {}
 
-extern NSString *const	kCDVCalendarINIT;
-extern NSString *const	kCDVCalendarALERT;
-extern NSString *const	kCDVCalendarSAVED;
-extern NSString *const	kCDVCalendarDocWrite;
+extern NSString *const	k___FILEBASENAME___INIT;
+extern NSString *const	k___FILEBASENAME___ALERT;
+extern NSString *const	k___FILEBASENAME___SAVED;
+extern NSString *const	k___FILEBASENAME___DocWrite;
 
 @property (nonatomic, retain) EKEventStore			*eventStore;
 @property (nonatomic, readwrite, retain) EKEvent	*returnEvent;

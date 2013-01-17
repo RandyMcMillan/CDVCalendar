@@ -3,19 +3,19 @@
 //  Based on https://github.com/felixactv8/Phonegap-Calendar-Plugin-ios
 //  Author: Felix Montanez
 //
-//  CDVCalendar
-//  CDVCalendar Template Created Jan 7 2013
+//  ___FILEBASENAME___
+//  ___FILEBASENAME___ Template Created Jan 7 2013
 //  Copyright 2013 @RandyMcMillan
 
 
 
-* Add`<script type="text/javascript" charset="utf-8" src="CDVCalendar.js"></script>`to your www/index.html
+* Add`<script type="text/javascript" charset="utf-8" src="___FILEBASENAME___.js"></script>`to your www/index.html
 
 * Add Cordova.plist values
 
 | Key | Type | Value |
 | ------------ |---| ------------- |
-| CDVCalendar | String | CDVCalendar |
+| ___FILEBASENAME___ | String | ___FILEBASENAME___ |
 
 [Sample index.html is included in the generated plugin](https://raw.github.com/RandyMcMillan/CDVPlugin/master/CDVPlugin.xctemplate/index.html)
 
